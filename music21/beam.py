@@ -151,6 +151,8 @@ class Beam(EqualSlottedObjectMixin):
         else:
             return '<music21.beam.Beam %s/%s/%s>' % (self.number, self.type, self.direction)
 
+    def __eq__(self, other):
+        return not isinstance(other, basestring) and self.__repr__() == other.__repr__()
 #------------------------------------------------------------------------------
 
 
@@ -210,6 +212,9 @@ class Beams(EqualSlottedObjectMixin):
         for beam in self.beamsList:
             msg.append(str(beam))
         return '<music21.beam.Beams %s>' % '/'.join(msg)
+
+    def __eq__(self, other):
+        return not isinstance(other, basestring) and self.__repr__() == other.__repr__()
 
     ### PUBLIC METHODS ###
     # pylint: disable=redefined-builtin
@@ -465,4 +470,3 @@ _DOC_ORDER = [Beams, Beam]
 if __name__ == "__main__":
     import music21
     music21.mainTest(Test)
-    

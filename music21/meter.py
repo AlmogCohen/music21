@@ -3708,14 +3708,17 @@ class TimeSignature(base.Music21Object):
             for n in srcList:
                 durList.append(n.duration)
             srcStream = srcList
+            hasNoteData = True
         elif len(srcList) > 0 and isinstance(srcList[0], base.Music21Object):
             # assume all are objects:
             durList = [n.duration for n in srcList]
             srcStream = None
+            hasNoteData = True
         else: 
             # a list of durations
             durList = srcList
             srcStream = None
+            hasNoteData = False
 
         if len(durList) <= 1:
             raise MeterException('length of durList must be 2 or greater, not %s' % len(durList))
@@ -3746,6 +3749,11 @@ class TimeSignature(base.Music21Object):
             # assume we are always starting at offset w/n this meter (Jose)
             pos = measureStartOffset 
             for i in range(len(durList)):
+                # We've provided with the notes themselves in the srcList
+                if hasNoteData:
+                    curNote = srcList[i]
+                    prevNote = srcList[i - 1] if i > 0 else None
+                    nextNote = srcList[i + 1] if i < (len(srcList) - 1) else None
 
                 dur = durList[i]
                 beams = beamsList[i]
@@ -3809,8 +3817,14 @@ class TimeSignature(base.Music21Object):
                     pos += dur.quarterLength
                     continue
 
+                # We don't know if the previous is a rest if we work with only duration list
+                # In cases we don't have note data, we continue as the code was before
+                if hasNoteData:
+                    is_previous_a_rest = prevNote.isRest if prevNote else False
+                else:
+                    is_previous_a_rest = False
                 # determine beamType
-                if i == 0: # if the first, we always start
+                if i == 0 or is_previous_a_rest: # if the first, we always start
                     beamType = 'start'
                     # get a partial beam if we cannot continue this
                     if (beamNext is None
@@ -3839,6 +3853,9 @@ class TimeSignature(base.Music21Object):
                     elif beamNext is None and beamNumber > 1:
                         beamType = 'partial-left'
 
+                    elif beamNumber not in beamNext.getNumbers():
+                        beamType = 'partial-right'
+
                     elif startNext >= archetypeSpan[1]:
                         # case of where we need a partial left:
                         # if the next start value is outside of this span (or at the
@@ -3861,7 +3878,7 @@ class TimeSignature(base.Music21Object):
                       and beamNumber in beamPrevious.getNumbers()
                       and beamPrevious.getTypeByNumber(beamNumber) in ['stop', 'partial-left']
                       and beamNext is not None):
-                    beamType = 'start'
+                    beamType = 'start' if beamNumber in beamNext.getNumbers() else 'partial-right'
 
 
                 # last note had beams but stopped, next note cannot be beamed to  

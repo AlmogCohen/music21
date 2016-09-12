@@ -15,6 +15,8 @@ import random
 import unittest
 import copy
 
+import beam
+import stream
 from music21.stream import Stream
 from music21.stream import Voice
 from music21.stream import Measure
@@ -7603,6 +7605,179 @@ class Test(unittest.TestCase):
             #print(note1, note2, note3, note4)
             #print(note1.id, note2.id, note3.id, note4.id)
         # TEST???
+
+
+class TestMakeBeams(unittest.TestCase):
+    """Adding a bunch of tests here due to issue 190. Bunch of beams are not generated the right way"""
+    def get_beams_from_stream(self, stream):
+        beams = []
+        for note in stream[1:]:
+            print(note.beams)
+            beams.append(note.beams)
+        return beams
+
+    def test_all_quarters(self):
+        """Test that for a measure full of quarters, there are no beams"""
+        m = stream.Measure()
+        m.timeSignature = meter.TimeSignature('4/4')
+        m.repeatAppend(note.Note('c4', quarterLength=1), 4)
+
+        m2 = m.makeBeams()
+        beams = self.get_beams_from_stream(m2)
+
+        self.assertEqual([None, None, None, None], beams)
+
+    def test_all_eighths(self):
+        """Test a full measure full of eighth"""
+        m = stream.Measure()
+        m.timeSignature = meter.TimeSignature('4/4')
+        m.repeatAppend(note.Note('c4', quarterLength=0.5), 8)
+
+        m2 = m.makeBeams()
+        beams = self.get_beams_from_stream(m2)
+
+        # Prepare the should be beams
+        first_note_beams = beam.Beams()
+        first_note_beams.append('start')
+
+        second_note_beams = beam.Beams()
+        second_note_beams.append('stop')
+
+        # Now test that they are equal
+        self.assertEqual(beams[0], first_note_beams)
+        self.assertEqual(beams[1], second_note_beams)
+
+        self.assertEqual(beams[2], first_note_beams)
+        self.assertEqual(beams[3], second_note_beams)
+
+        self.assertEqual(beams[4], first_note_beams)
+        self.assertEqual(beams[5], second_note_beams)
+
+        self.assertEqual(beams[6], first_note_beams)
+        self.assertEqual(beams[7], second_note_beams)
+
+    def test_eighth_rests_and_eighth(self):
+        """Test a full measure of 8th rest followed by 8th note"""
+        m = stream.Measure()
+        m.timeSignature = meter.TimeSignature('4/4')
+        for i in range(4):
+            m.append(note.Rest('c4', quarterLength=0.5))
+            m.append(note.Note('c4', quarterLength=0.5))
+
+        m2 = m.makeBeams()
+        beams = self.get_beams_from_stream(m2)
+
+        self.assertEqual([None,] * 8, beams)
+
+    def test_broken(self):
+        """Test the beams for a measure of 4 of those: 16th rest, 16th note, 8th note"""
+        m = stream.Measure()
+        m.timeSignature = meter.TimeSignature('4/4')
+        for i in range(4):
+            m.append(note.Rest('c4', quarterLength=0.25))
+            m.append(note.Note('c4', quarterLength=0.25))
+            m.append(note.Note('c4', quarterLength=0.5))
+
+        m2 = m.makeBeams()
+        beams = self.get_beams_from_stream(m2)
+
+        # Creating the beam that should be created
+        note1_beams = beam.Beams()
+        note1_beams.append('start')
+        note1_beams.append('partial', 'right')
+
+        note2_beams = beam.Beams()
+        note2_beams.append('stop')
+
+        # Now test that they are equal
+        self.assertEqual(beams[0], None)
+        self.assertEqual(beams[1], note1_beams)
+        self.assertEqual(beams[2], note2_beams)
+
+        self.assertEqual(beams[3], None)
+        self.assertEqual(beams[4], note1_beams)
+        self.assertEqual(beams[5], note2_beams)
+
+        self.assertEqual(beams[6], None)
+        self.assertEqual(beams[7], note1_beams)
+        self.assertEqual(beams[8], note2_beams)
+
+        self.assertEqual(beams[9], None)
+        self.assertEqual(beams[10], note1_beams)
+        self.assertEqual(beams[11], note2_beams)
+
+    def test_broken2(self):
+        """Test a full measure of 4: 16th, eighth, 16th notes."""
+        m = stream.Measure()
+        m.timeSignature = meter.TimeSignature('4/4')
+        for i in range(4):
+            m.append(note.Note('c4', quarterLength=0.25))
+            m.append(note.Note('c4', quarterLength=0.5))
+            m.append(note.Note('c4', quarterLength=0.25))
+
+        m2 = m.makeBeams()
+        beams = self.get_beams_from_stream(m2)
+
+        # Creating the beam that should be created
+        note1_beams = beam.Beams()
+        note1_beams.append('start')
+        note1_beams.append('partial', 'right')
+
+        note2_beams = beam.Beams()
+        note2_beams.append('continue')
+
+        note3_beams = beam.Beams()
+        note3_beams.append('stop')
+        note3_beams.append('partial', 'left')
+
+        self.assertEqual(beams[0], note1_beams)
+        self.assertEqual(beams[1], note2_beams)
+        self.assertEqual(beams[2], note3_beams)
+
+        self.assertEqual(beams[3], note1_beams)
+        self.assertEqual(beams[4], note2_beams)
+        self.assertEqual(beams[5], note3_beams)
+
+        self.assertEqual(beams[6], note1_beams)
+        self.assertEqual(beams[7], note2_beams)
+        self.assertEqual(beams[8], note3_beams)
+
+        self.assertEqual(beams[9], note1_beams)
+        self.assertEqual(beams[10], note2_beams)
+        self.assertEqual(beams[11], note3_beams)
+
+    def test_broken3(self):
+        """Test a full measure full 4 of those: 16th note followed by dotted 8th note"""
+        m = stream.Measure()
+        m.timeSignature = meter.TimeSignature('4/4')
+        for i in range(4):
+            m.append(note.Note('c4', quarterLength=0.25))
+            m.append(note.Note('c4', quarterLength=0.75))
+
+        m2 = m.makeBeams()
+        beams = self.get_beams_from_stream(m2)
+
+        # Prepare the should be beams
+        first_note_beams = beam.Beams()
+        first_note_beams.append('start')
+        first_note_beams.append('partial', 'right')
+
+        second_note_beams = beam.Beams()
+        second_note_beams.append('stop')
+
+        # Now test that they are equal
+        self.assertEqual(beams[0], first_note_beams)
+        self.assertEqual(beams[1], second_note_beams)
+
+        self.assertEqual(beams[2], first_note_beams)
+        self.assertEqual(beams[3], second_note_beams)
+
+        self.assertEqual(beams[4], first_note_beams)
+        self.assertEqual(beams[5], second_note_beams)
+
+        self.assertEqual(beams[6], first_note_beams)
+        self.assertEqual(beams[7], second_note_beams)
+
 
 #------------------------------------------------------------------------------
 
