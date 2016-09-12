@@ -7778,6 +7778,38 @@ class TestMakeBeams(unittest.TestCase):
         self.assertEqual(beams[6], first_note_beams)
         self.assertEqual(beams[7], second_note_beams)
 
+    def test_broken4(self):
+        """Test a full measure full 4 of those: dotted 8th note followed by 16th note"""
+        m = stream.Measure()
+        m.timeSignature = meter.TimeSignature('4/4')
+        for i in range(4):
+            m.append(note.Note('c4', quarterLength=0.75))
+            m.append(note.Note('c4', quarterLength=0.25))
+
+        m2 = m.makeBeams()
+        beams = self.get_beams_from_stream(m2)
+
+        # Prepare the should be beams
+        first_note_beams = beam.Beams()
+        first_note_beams.append('start')
+
+        second_note_beams = beam.Beams()
+        second_note_beams.append('stop')
+        second_note_beams.append('partial', 'left')
+
+
+        # Now test that they are equal
+        self.assertEqual(beams[0], first_note_beams)
+        self.assertEqual(beams[1], second_note_beams)
+
+        self.assertEqual(beams[2], first_note_beams)
+        self.assertEqual(beams[3], second_note_beams)
+
+        self.assertEqual(beams[4], first_note_beams)
+        self.assertEqual(beams[5], second_note_beams)
+
+        self.assertEqual(beams[6], first_note_beams)
+        self.assertEqual(beams[7], second_note_beams)
 
 #------------------------------------------------------------------------------
 
