@@ -3853,7 +3853,7 @@ class TimeSignature(base.Music21Object):
                     elif beamNext is None and beamNumber > 1:
                         beamType = 'partial-left'
 
-                    elif beamNumber - 1 in beamPrevious.getNumbers() and beamPrevious.beamsList[depth - 1].type in ('start', 'continue'):
+                    elif beamNumber - 1 in beamPrevious.getNumbers() and beamNumber not in beamNext.getNumbers() and beamPrevious.beamsList[depth - 1].type in ('start', 'continue'):
                         beamType = 'partial-left'
 
                     elif beamNumber not in beamNext.getNumbers():
