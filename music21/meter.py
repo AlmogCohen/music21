@@ -3770,8 +3770,6 @@ class TimeSignature(base.Music21Object):
 
                 start = opFrac(pos)
                 end = opFrac(pos + dur.quarterLength)
-                startNext = opFrac(pos + dur.quarterLength)
-                #endPrevious = pos
 
                 if i == len(durList) - 1: # last
                     #durNext = None
@@ -3794,7 +3792,6 @@ class TimeSignature(base.Music21Object):
                     pos += dur.quarterLength
                     continue
 
-
                 # get an archetype of the MeterSequence for this level
                 # level is depth, starting at zero
                 archetype = self.beamSequence.getLevel(depth)
@@ -3806,12 +3803,11 @@ class TimeSignature(base.Music21Object):
                 if beamNext is None: # last note or before a non-beamable note (half, whole, etc.)
                     archetypeSpanNext = None
                 else:
-                    archetypeSpanNext = archetype.offsetToSpan(startNext)
+                    archetypeSpanNext = archetype.offsetToSpan(end)
 
                 # watch for a special case where a duration completely fills
                 # the archetype; this generally should not be beamed
-                if (start == archetypeSpan[0]
-                        and end == archetypeSpan[1]):
+                if (start == archetypeSpan[0] and end == archetypeSpan[1]):
                     # increment position and continue loop
                     beamsList[i] = None # replace with None!
                     pos += dur.quarterLength
@@ -3853,13 +3849,13 @@ class TimeSignature(base.Music21Object):
                     elif beamNext is None and beamNumber > 1:
                         beamType = 'partial-left'
 
-                    elif beamNumber - 1 in beamPrevious.getNumbers() and beamNumber not in beamNext.getNumbers() and beamPrevious.beamsList[depth - 1].type in ('start', 'continue'):
+                    elif beamPrevious and beamNumber - 1 in beamPrevious.getNumbers() and beamNumber not in beamNext.getNumbers() and beamPrevious.beamsList[depth - 1].type in ('start', 'continue'):
                         beamType = 'partial-left'
 
                     elif beamNumber not in beamNext.getNumbers():
                         beamType = 'partial-right'
 
-                    elif startNext >= archetypeSpan[1]:
+                    elif end >= archetypeSpan[1]:
                         # case of where we need a partial left:
                         # if the next start value is outside of this span (or at the
                         # the greater boundary of this span), and we did not have a
@@ -3906,14 +3902,14 @@ class TimeSignature(base.Music21Object):
                 # as this one.
                 # if endNext is outside of the archetype span,
                 # not sure what to do
-                elif startNext < archetypeSpan[1]:
+                elif end < archetypeSpan[1]:
                     #environLocal.printDebug(['continue match: durtype, startNext, archetypeSpan', 
                     #   dur.type, startNext, archetypeSpan])
                     beamType = 'continue'
 
                 # we stop if the next beam is not in the same beaming archetype
                 # and (as shown above) a valid beam number is not previous
-                elif startNext >= archetypeSpanNext[0]:
+                elif end >= archetypeSpanNext[0]:
                     beamType = 'stop'
 
                 else:
