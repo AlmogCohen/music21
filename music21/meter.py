@@ -3757,6 +3757,7 @@ class TimeSignature(base.Music21Object):
 
                 dur = durList[i]
                 beams = beamsList[i]
+                nextPos = pos + dur.quarterLength
 
                 if beams is None: # if a place holder
                     pos += dur.quarterLength
@@ -3769,16 +3770,19 @@ class TimeSignature(base.Music21Object):
                     continue
 
                 start = opFrac(pos)
-                end = opFrac(pos + dur.quarterLength)
+                end = opFrac(nextPos)
 
-                if i == len(durList) - 1: # last
+                beatStart, beatEnd = self.beatSequence.offsetToSpan(pos)
+                isFirstInBit, isLastInBit = start == beatStart, end == beatEnd
+
+                if isLastInBit: # last
                     #durNext = None
                     beamNext = None
                 else:
                     #durNext = durList[i + 1]
                     beamNext = beamsList[i + 1]
 
-                if i == 0: # first note in measure
+                if isFirstInBit: # first note in measure
                     #durPrevious = None
                     beamPrevious = None
                 else:
@@ -3792,9 +3796,15 @@ class TimeSignature(base.Music21Object):
                     pos += dur.quarterLength
                     continue
 
+                isContinuePreviousBeam = beamPrevious is not None and beamNumber in beamPrevious.getNumbers()
+                isContinuedByNextBeam = beamNext is not None and beamNumber in beamNext.getNumbers()
+
+                # This part I think should be replaced by the beat beam tester for drumming reasons:
+
                 # get an archetype of the MeterSequence for this level
                 # level is depth, starting at zero
                 archetype = self.beamSequence.getLevel(depth)
+
                 # span is the quarter note duration points for each partition
                 # at this level
                 archetypeSpan = archetype.offsetToSpan(start)
@@ -3807,7 +3817,7 @@ class TimeSignature(base.Music21Object):
 
                 # watch for a special case where a duration completely fills
                 # the archetype; this generally should not be beamed
-                if (start == archetypeSpan[0] and end == archetypeSpan[1]):
+                if start == archetypeSpan[0] and end == archetypeSpan[1]:
                     # increment position and continue loop
                     beamsList[i] = None # replace with None!
                     pos += dur.quarterLength
@@ -3820,18 +3830,14 @@ class TimeSignature(base.Music21Object):
                 else:
                     is_previous_a_rest = False
                 # determine beamType
-                if i == 0 or is_previous_a_rest: # if the first, we always start
-                    beamType = 'start'
+                if start == beatStart or is_previous_a_rest: # if the first, we always start
+                    beamType = 'start' if isContinuedByNextBeam else 'partial-right'
                     # get a partial beam if we cannot continue this
-                    if (beamNext is None
-                            or beamNumber not in beamNext.getNumbers()):
-                        beamType = 'partial-right'
 
-                elif i == len(durList) - 1: # last is always stop
+                elif end == beatEnd: # last is always stop
                     beamType = 'stop'
                     # get a partial beam if we cannot come form a beam
-                    if (beamPrevious is None
-                            or beamNumber not in beamPrevious.getNumbers()):
+                    if not isContinuePreviousBeam:
                         #environLocal.printDebug(
                         #   ['triggering partial left where a stop normally falls'])
                         beamType = 'partial-left'
@@ -3841,7 +3847,7 @@ class TimeSignature(base.Music21Object):
                 # if last beam was not defined, we need to either
                 # start or have a partial left beam
                 # or, if beam number was not active in last beams
-                elif beamPrevious is None or beamNumber not in beamPrevious.getNumbers():
+                elif not isContinuePreviousBeam:
                     if beamNumber == 1 and beamNext is None:
                         beamsList[i] = None
                         pos += dur.quarterLength
