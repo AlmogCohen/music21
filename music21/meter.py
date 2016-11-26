@@ -1985,7 +1985,7 @@ class MeterSequence(MeterTerminal):
         loading is a destructive operation.
 
 
-        >>> a = meter.MeterSequence()
+            >>> a = meter.MeterSequence()
         >>> a.load('4/4', 4)
         >>> str(a)
         '{1/4+1/4+1/4+1/4}'
@@ -3631,6 +3631,25 @@ class TimeSignature(base.Music21Object):
     #---------------------------------------------------------------------------
     # access data for other processing
 
+    def getDrumBeatSequence(self):
+        """
+        Creates a beat based music21 meter sequence based on the numerator and denominator
+        that is suitable for drums representation
+        """
+        numerator, denominator = self.beatSequence.numerator, self.beatSequence.denominator
+        TS_COMPOUND = [[6, 8], [9, 8], [12, 8]]
+        beats = []
+        if [numerator, denominator] in TS_COMPOUND:
+            for n in range(int(numerator / 3)):
+                beats.append('3/8')
+        else:
+            for quarter in range(int(numerator / (denominator / 4))):
+                beats.append('1/4')
+            if denominator != 4:
+                beats.append('{}/{}'.format(numerator % int(denominator / 4), denominator))
+
+        return MeterSequence('+'.join(beats))
+
     def getBeams(self, srcList, measureStartOffset=0.0):
         '''
         Given a qLen position and an iterable of Duration objects
@@ -3747,7 +3766,8 @@ class TimeSignature(base.Music21Object):
             # increment to count from 1 not 0
             beamNumber = depth + 1 
             # assume we are always starting at offset w/n this meter (Jose)
-            pos = measureStartOffset 
+            pos = measureStartOffset
+            drumBeatSequence = self.getDrumBeatSequence()
             for i in range(len(durList)):
                 # We've provided with the notes themselves in the srcList
                 if hasNoteData:
@@ -3772,21 +3792,17 @@ class TimeSignature(base.Music21Object):
                 start = opFrac(pos)
                 end = opFrac(nextPos)
 
-                beatStart, beatEnd = self.beatSequence.offsetToSpan(pos)
-                isFirstInBit, isLastInBit = start == beatStart, end == beatEnd
+                beatStart, beatEnd = drumBeatSequence.offsetToSpan(pos)
+                isFirstInBeat, isLastIsBeat = start == beatStart, end == beatEnd
 
-                if isLastInBit: # last
-                    #durNext = None
+                if isLastIsBeat: # last
                     beamNext = None
                 else:
-                    #durNext = durList[i + 1]
                     beamNext = beamsList[i + 1]
 
-                if isFirstInBit: # first note in measure
-                    #durPrevious = None
+                if isFirstInBeat:
                     beamPrevious = None
                 else:
-                    #durPrevious = durList[i - 1]
                     beamPrevious = beamsList[i - 1]
 
                 if beamNext is None and beamPrevious is None:
@@ -3798,8 +3814,6 @@ class TimeSignature(base.Music21Object):
 
                 isContinuePreviousBeam = beamPrevious is not None and beamNumber in beamPrevious.getNumbers()
                 isContinuedByNextBeam = beamNext is not None and beamNumber in beamNext.getNumbers()
-
-                # This part I think should be replaced by the beat beam tester for drumming reasons:
 
                 # get an archetype of the MeterSequence for this level
                 # level is depth, starting at zero
