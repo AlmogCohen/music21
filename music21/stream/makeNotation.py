@@ -1133,7 +1133,6 @@ def makeTupletBrackets(s, inPlace=False):
     ['start', None, 'stop', 'start', None, 'stop']
     '''
     durationList = []
-    
     # legacy -- works on lists not just streams...
     if isinstance(s, list) or isinstance(s, tuple):
         durationList = s
@@ -1156,9 +1155,7 @@ def makeTupletBrackets(s, inPlace=False):
         if tupletList in [(), None]: # no tuplets, length is zero
             tupletMap.append([None, dur])
         elif len(tupletList) > 1:
-            #for i in range(len(tuplets)):
-            #    tupletMap.append([tuplets[i],dur])
-            environLocal.warn('got multi-tuplet duration; cannot yet handle this. %s' % 
+            environLocal.warn('got multi-tuplet duration; cannot yet handle this. %s' %
                               repr(tupletList))
         elif len(tupletList) == 1:
             tupletMap.append([tupletList[0], dur])
@@ -1171,27 +1168,18 @@ def makeTupletBrackets(s, inPlace=False):
     # have a list of tuplet, Duration pairs
     completionCount = 0 # qLen currently filled
     completionTarget = None # qLen necessary to fill tuplet
+    pos = 0
+
     for i in range(len(tupletMap)):
         tupletObj, dur = tupletMap[i]
 
-        if i > 0:
-            tupletPrevious = tupletMap[i - 1][0]
-        else:
-            tupletPrevious = None
+        # Set the tuplet previous if possible
+        tupletPrevious = None if i == 0 else tupletMap[i - 1][0]
 
-        if i < len(tupletMap) - 1:
-            tupletNext = tupletMap[i + 1][0]
-#            if tupletNext != None:
-#                nextNormalType = tupletNext.durationNormal.type
-#            else:
-#                nextNormalType = None
-        else:
-            tupletNext = None
-#            nextNormalType = None
+        # Set the tuplet next if possible
+        tupletNext = None if i == len(tupletMap) - 1 else tupletMap[i + 1][0]
 
-#         environLocal.printDebug(['updateTupletType previous, this, next:',
-#                                  tupletPrevious, tuplet, tupletNext])
-
+        # Only if this note is a tuplet
         if tupletObj is not None:
 #            thisNormalType = tuplet.durationNormal.type
             completionCount = opFrac(completionCount + dur.quarterLength)
@@ -1204,33 +1192,36 @@ def makeTupletBrackets(s, inPlace=False):
                     completionCount = 0 # reset
                 else:
                     tupletObj.type = 'start'
-                    # get total quarter length of this tuplet
-                    completionTarget = tupletObj.totalTupletLength()
-                    #environLocal.printDebug(['starting tuplet type, value:',
-                    #                         tuplet, tuplet.type])
-                    #environLocal.printDebug(['completion count, target:',
-                    #                         completionCount, completionTarget])
+                    # get total quarter length of this beat
+                    if hasattr(s, 'coryvo_hack_meter'):
+                        beatStart, beatEnd = s.coryvo_hack_meter.offsetToSpan(pos)
+                        print s.coryvo_hack_meter
+                        beatLength = beatEnd - beatStart
+                        completionTarget = beatLength
+                    else:
+                        completionTarget = 1.0
+                        # Old wrong code is:
+                        # completionTarget = tupletObj.totalTupletLength()
 
             # if tuplet next is None, always stop
             # if both previous and next are None, just keep a start
 
             # this, below, is optional:
             # if next normal type is not the same as this one, also stop
+
             elif (tupletNext is None or completionCount >= completionTarget):
                 tupletObj.type = 'stop' # should be impossible once frozen...
                 completionTarget = None # reset
                 completionCount = 0 # reset
-                #environLocal.printDebug(['stopping tuplet type, value:',
-                #                         tuplet, tuplet.type])
-                #environLocal.printDebug(['completion count, target:',
-                #                         completionCount, completionTarget])
+
 
             # if tuplet next and previous not None, increment
             elif tupletPrevious != None and tupletNext != None:
                 # do not need to change tuplet type; should be None
                 pass
-                #environLocal.printDebug(['completion count, target:',
-                #                         completionCount, completionTarget])
+
+            pos += dur.quarterLength
+
 
     if not inPlace:
         return returnObj

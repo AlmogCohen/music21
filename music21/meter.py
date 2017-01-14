@@ -3643,11 +3643,6 @@ class TimeSignature(base.Music21Object):
             for n in range(int(numerator / 3)):
                 beats.append('3/8')
         else:
-            # for quarter in range(int(numerator / (denominator / 4))):
-            #     beats.append('1/4')
-            # if denominator != 4:
-            #     beats.append('{}/{}'.format(numerator % int(denominator / 4), denominator))
-
             # Add all the beats but the last one (as it might be added to the last non 1/4 bit
             if denominator == 4:
                 for quarter in range(numerator):
@@ -3818,17 +3813,10 @@ class TimeSignature(base.Music21Object):
                 end = opFrac(nextPos)
 
                 beatStart, beatEnd = drumBeatSequence.offsetToSpan(pos)
-                isFirstInBeat, isLastIsBeat = start == beatStart, end == beatEnd
+                isFirstInBeat, isLastInBeat = start == beatStart, end == beatEnd
 
-                if isLastIsBeat: # last
-                    beamNext = None
-                else:
-                    beamNext = beamsList[i + 1]
-
-                if isFirstInBeat:
-                    beamPrevious = None
-                else:
-                    beamPrevious = beamsList[i - 1]
+                beamNext = None if isLastInBeat else beamsList[i + 1]
+                beamPrevious = None if isFirstInBeat else beamsList[i - 1]
 
                 if beamNext is None and beamPrevious is None:
                     # sandwiched between two unbeamables = no beams
