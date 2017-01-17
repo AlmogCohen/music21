@@ -1031,7 +1031,7 @@ class Tuplet(object):
         self.type = None
         self.bracket = True # true or false
         self.placement = "above" # above or below
-        self.tupletActualShow = "number" # could be "number","type", or "none"
+        self.tupletActualShow = "number" # could be "number","type", or "none", or "both"
         self.tupletNormalShow = None # for ratios?
 
         # this attribute is not yet used anywhere

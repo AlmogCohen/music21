@@ -3217,8 +3217,8 @@ class MeasureExporter(XMLExporterBase):
                              xmlObjects.booleanToYesNo(tuplet.bracket))
                 if tuplet.placement is not None:
                     mxTuplet.set('placement', tuplet.placement)
-                if tuplet.tupletActualShow == 'none':
-                    mxTuplet.set('show-number', 'none')
+                if tuplet.tupletActualShow in ('none', 'both'):
+                    mxTuplet.set('show-number', tuplet.tupletActualShow)
             retList.append(mxTuplet)
         return retList
 
