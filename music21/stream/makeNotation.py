@@ -1195,7 +1195,6 @@ def makeTupletBrackets(s, inPlace=False):
                     # get total quarter length of this beat
                     if hasattr(s, 'coryvo_hack_meter'):
                         beatStart, beatEnd = s.coryvo_hack_meter.offsetToSpan(pos)
-                        print s.coryvo_hack_meter
                         beatLength = beatEnd - beatStart
                         completionTarget = beatLength
                     else:
