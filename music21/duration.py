@@ -452,19 +452,19 @@ def quarterLengthToTuplet(qLen,
 
     for typeValue, typeKey in durationToType:
         # try tuplets
-        for i in tupletNumerators:
-            qLenBase = opFrac(typeValue / float(i))
+        for notesActual in tupletNumerators:
+            qLenBase = opFrac(typeValue / float(notesActual))
             # try multiples of the tuplet division, from 1 to max-1
-            for m in range(1, i):
+            for notesNormal in range(1, notesActual):
                 POSSIBLE_DOTS_IN_TUPLETS = [0, 1]
                 DOT_LENGTH_MULTIPLAYER = Fraction(3, 2)
                 for number_of_dots in POSSIBLE_DOTS_IN_TUPLETS:
                     dot_multiplayer = (DOT_LENGTH_MULTIPLAYER) ** number_of_dots
-                    qLenCandidate = qLenBase * m * dot_multiplayer
+                    qLenCandidate = qLenBase * notesNormal * dot_multiplayer
                     if qLenCandidate == qLen:
                         tupletDuration = durationTupleFromTypeDots(typeKey, number_of_dots)
-                        newTuplet = Tuplet(numberNotesActual=i,
-                                           numberNotesNormal=m,
+                        newTuplet = Tuplet(numberNotesActual=notesActual,
+                                           numberNotesNormal=notesNormal,
                                            durationActual=tupletDuration,
                                            durationNormal=tupletDuration,)
                         post.append(newTuplet)
