@@ -478,6 +478,31 @@ def quarterLengthToTuplet(qLen,
     
     return post
 
+
+def polyrhythmQuarterLengthToTuplet(qLen, notesActual, notesNormal):
+    '''
+    Returns a suggestion for Tuplet objects for a
+    given `qLen` (quarterLength). As we for polyrhythm, the base tuplet type
+    is forced to be a quarter.
+    '''
+    qLen = opFrac(qLen)
+
+    typeValue = 1.0
+    typeKey = 'quarter'
+    qLenBase = opFrac(typeValue / float(notesActual))
+    # try multiples of the tuplet division, from 1 to max-1
+    qLenCandidate = qLenBase * notesNormal
+    if qLenCandidate == qLen:
+        tupletDuration = durationTupleFromTypeDots(typeKey, dots=0)
+        newTuplet = Tuplet(numberNotesActual=notesActual,
+                           numberNotesNormal=notesNormal,
+                           durationActual=tupletDuration,
+                           durationNormal=tupletDuration, )
+        return newTuplet
+
+    raise Exception('Unable to create apropriate tuplet. qLen: {}, notesActual: {}, notesNormal: {}'.format(qLen, notesActual, notesNormal))
+
+
 QuarterLengthConversion = namedtuple('QuarterLengthConversion', 'components tuplet')
 
 def quarterConversion(qLen):
