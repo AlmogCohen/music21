@@ -3903,29 +3903,22 @@ class TimeSignature(base.Music21Object):
                     else:
                         beamType = 'start'
 
-
-                # last beams was active, last beamNumber was active,
-                # and it was stopped or was a partial-left
-                elif (beamPrevious is not None
-                      and beamNumber in beamPrevious.getNumbers()
-                      and beamPrevious.getTypeByNumber(beamNumber) in ['stop', 'partial-left']
-                      and beamNext is not None):
-                    beamType = 'start' if beamNumber in beamNext.getNumbers() else 'partial-right'
-
-
-                # last note had beams but stopped, next note cannot be beamed to  
-                # was active, last beamNumber was active,
-                # and it was stopped or was a partial-left
-                elif (beamPrevious is not None
-                      and beamNumber in beamPrevious.getNumbers()
-                      and beamPrevious.getTypeByNumber(beamNumber) in ['stop', 'partial-left']
-                      and beamNext is None):
-                    beamType = 'partial-left'  # will be deleted later in the script
+                elif (beamPrevious is not None and
+                    beamNumber in beamPrevious.getNumbers() and
+                    beamPrevious.getTypeByNumber(beamNumber) in ['stop', 'partial-left']):
+                    if beamNext is None:
+                        # last note had beams but stopped, next note cannot be beamed to
+                        # was active, last beamNumber was active,
+                        # and it was stopped or was a partial-left
+                        beamType = 'partial-left'
+                    else:
+                        # last beams was active, last beamNumber was active,
+                        # and it was stopped or was a partial-left
+                        beamType = 'start' if beamNumber in beamNext.getNumbers() else 'partial-right'
 
                 # if no beam is defined next (we know this already)
                 # then must stop
-                elif (beamNext is None
-                      or beamNumber not in beamNext.getNumbers()):
+                elif beamNext is None or beamNumber not in beamNext.getNumbers():
                     beamType = 'stop'
 
                 # the last cases are when to stop, or when to continue
@@ -3935,14 +3928,14 @@ class TimeSignature(base.Music21Object):
                 # as this one.
                 # if endNext is outside of the archetype span,
                 # not sure what to do
-                elif end < archetypeSpan[1]:
+                elif end < beatEnd:
                     #environLocal.printDebug(['continue match: durtype, startNext, archetypeSpan',
                     #   dur.type, startNext, archetypeSpan])
                     beamType = 'continue'
 
                 # we stop if the next beam is not in the same beaming archetype
                 # and (as shown above) a valid beam number is not previous
-                elif end >= archetypeSpanNext[0]:
+                elif end >= beatEnd:
                     beamType = 'stop'
 
                 else:
