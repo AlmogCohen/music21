@@ -3893,10 +3893,6 @@ class MeasureExporter(XMLExporterBase):
         if soundingQuarterBPM is not None:
             mxSound = SubElement(mxDirection, 'sound')
             mxSound.set('tempo', str(common.numToIntOrFloat(soundingQuarterBPM)))
-
-        if soundingQuarterBPM is not None:
-            mxSound = SubElement(mxDirection, 'sound')
-            mxSound.set('tempo', str(common.numToIntOrFloat(soundingQuarterBPM)))
         
         if hideNumericalMetro is not None:
             self.xmlRoot.append(mxDirection)
