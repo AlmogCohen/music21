@@ -1085,8 +1085,10 @@ def _streamToPackets(s, trackId=1):
             if firstNotePlayed is False:
                 o = offsetToMidi(s.elementOffset(obj), addStartDelay=False)
             else:
-                o = offsetToMidi(s.elementOffset(obj))
-            
+                ### TODO: Found no reason to add the extra delay at start, stopped adding that
+                # o = offsetToMidi(s.elementOffset(obj))
+                o = offsetToMidi(s.elementOffset(obj), addStartDelay=False)
+
             if midiEvent.type != 'NOTE_OFF':
                 # use offset
                 p = _getPacket(trackId, 
