@@ -96,14 +96,7 @@ def durationToMidi(d):
     '''
     if d._quarterLengthNeedsUpdating:
         d.updateQuarterLength()
-
-    # TODO: ALMOG: support the custom modification of notes playback duration
-    if getattr(d, '_playback_duration', None):
-        duration = d._playback_duration
-    else:
-        duration = d.quarterLength
-
-    return int(round(duration * defaults.ticksPerQuarter))
+    return int(round(d.quarterLength * defaults.ticksPerQuarter))
 
 def midiToDuration(ticks, ticksPerQuarter=None, inputM21DurationObject=None):
     '''    
