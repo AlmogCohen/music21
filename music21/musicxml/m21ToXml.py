@@ -2874,8 +2874,8 @@ class MeasureExporter(XMLExporterBase):
         '''
         mxDuration = Element('duration')
         # TODO: ALMOG: modify only the element duration using a specific tag set in outside code
-        if getattr(dur, '_musicxml_duration'):
-            duration = dur._musicxml_duration
+        if getattr(dur, '_playback_duration'):
+            duration = dur._playback_duration
         else:
             duration = dur.quarterLength
 
