@@ -1406,7 +1406,9 @@ class Duration(SlottedObjectMixin):
         '_unlinkedType',
         '_dotGroups',
         
-        '_client'
+        '_client',
+        # TODO: ALMOG: support custom mxl durations in the musicxml (used currently for swing score)
+        '_musicxml_duration',
         )
 
     ### INITIALIZER ###

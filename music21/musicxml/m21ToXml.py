@@ -2861,11 +2861,10 @@ class MeasureExporter(XMLExporterBase):
             mxNoteList.append(self.noteToXml(n, addChordTag=addChordTag, chordParent=c))
         return mxNoteList
 
-            
     def durationXml(self, dur):
         '''
         Convert a duration.Duration object to a <duration> tag using self.currentDivisions
-        
+
         >>> d = duration.Duration(1.5)
         >>> MEX = musicxml.m21ToXml.MeasureExporter()
         >>> MEX.currentDivisions = 10
@@ -2874,9 +2873,15 @@ class MeasureExporter(XMLExporterBase):
         <duration>15</duration>
         '''
         mxDuration = Element('duration')
-        mxDuration.text = str(int(round(self.currentDivisions * dur.quarterLength)))
+        # TODO: ALMOG: modify only the element duration using a specific tag set in outside code
+        if getattr(dur, '_musicxml_duration'):
+            duration = dur._musicxml_duration
+        else:
+            duration = dur.quarterLength
+
+        mxDuration.text = str(int(round(self.currentDivisions * duration)))
         return mxDuration
-    
+
     def pitchToXml(self, p):
         '''
         convert a pitch to xml... does not create the <accidental> tag...
