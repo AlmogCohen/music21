@@ -19,7 +19,7 @@ __all__ = ['base', 'lyrics', 'segment', 'serial']
 
 from music21.search import base
 from music21.search import lyrics
-from music21.search import segment
+# from music21.search import segment
 from music21.search import serial
 
 # __init__ can wildcard import base; it's how it is designed.

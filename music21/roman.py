@@ -2274,7 +2274,7 @@ class TestExternal(unittest.TestCase):
         pass
 
     def testFromChordify(self):
-        from music21 import corpus
+        # from music21 import corpus
         b = corpus.parse('bwv103.6')
         c = b.chordify()
         ckey = b.analyze('key')

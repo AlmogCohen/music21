@@ -1518,7 +1518,7 @@ class Test(unittest.TestCase):
         self.assertIsNotNone(st3)
 
 #     def testBachDoctest(self):
-#         from music21 import corpus, note, chord, tree
+#         # from music21 import corpus, note, chord, tree
 #         bach = corpus.parse('bwv66.6')
 #         tree = tree.fromStream.asTimespans(bach, flatten=True, 
 #                                               classList=(note.Note, chord.Chord))
@@ -1555,7 +1555,7 @@ class Test(unittest.TestCase):
         
         G# was coming from an incorrect activeSite.  activeSite should not be used!       
         '''
-        from music21 import corpus, stream, note
+        # from music21 import corpus, stream, note
         s = stream.Stream()
         n0 = note.Note('A')
         n0.duration.quarterLength = 3.0
@@ -1602,7 +1602,7 @@ class Test(unittest.TestCase):
                         
 
 #     def testBachDoctest(self):
-#         from music21 import corpus, note, chord, tree
+#         # from music21 import corpus, note, chord, tree
 #         bach = corpus.parse('bwv66.6')
 #         scoreTree = tree.fromStream.asTimespans(bach, flatten=True, 
 #                                               classList=(note.Note, chord.Chord))

@@ -46,10 +46,10 @@ from music21.alpha import analysis
 from music21.alpha import counterpoint
 from music21.alpha import theoryAnalysis
 from music21.alpha import trecento
-from music21.alpha import webapps
+# from music21.alpha import webapps
 
 from music21.alpha import chant
-from music21.alpha import contour
+# from music21.alpha import contour
 from music21.alpha import medren 
 
 

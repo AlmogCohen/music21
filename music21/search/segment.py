@@ -38,7 +38,7 @@ from functools import partial
 
 from music21 import common
 from music21 import converter
-from music21 import corpus
+# from music21 import corpus
 from music21 import environment
 
 _MOD = 'search.segment.py'

@@ -2208,7 +2208,7 @@ class Test(unittest.TestCase):
 
     def testAnacrusisTiming(self):
 
-        from music21 import corpus
+        # from music21 import corpus
 
         s = corpus.parse('bach/bwv103.6')
 
@@ -2329,7 +2329,7 @@ class Test(unittest.TestCase):
         #s.show('midi')
 
     def testOverlappedEventsA(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         sFlat = s.flat
         mtList = streamHierarchyToMidiTracks(sFlat)
@@ -2562,7 +2562,7 @@ class Test(unittest.TestCase):
 
     def testMicrotonalOutputE(self):
 
-        from music21 import corpus, interval
+        # from music21 import corpus, interval
         s = corpus.parse('bwv66.6')
         p1 = s.parts[0]
         p2 = copy.deepcopy(p1)
@@ -2584,7 +2584,7 @@ class Test(unittest.TestCase):
 
     def testMicrotonalOutputF(self):
 
-        from music21 import corpus, interval
+        # from music21 import corpus, interval
         s = corpus.parse('bwv66.6')
         p1 = s.parts[0]
         p2 = copy.deepcopy(p1)
@@ -2613,7 +2613,7 @@ class Test(unittest.TestCase):
 
     def testMicrotonalOutputG(self):
 
-        from music21 import corpus, interval, instrument
+        # from music21 import corpus, interval, instrument
         s = corpus.parse('bwv66.6')
         p1 = s.parts[0]
         p1.remove(p1.getElementsByClass('Instrument')[0])
@@ -2885,7 +2885,7 @@ class Test(unittest.TestCase):
         
     def testMidiEventsImported(self):
 
-        from music21 import corpus
+        # from music21 import corpus
 
         def procCompare(mf, match):
             triples = []

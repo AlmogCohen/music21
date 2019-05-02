@@ -8737,7 +8737,7 @@ class Stream(core.StreamCoreMixin, base.Music21Object):
 
         N.B., TODO: This may turn to an Iterator soon.
 
-        >>> from music21 import corpus
+        >>> # from music21 import corpus
         >>> a = corpus.parse('bach/bwv324.xml')
         >>> partOnePitches = a.parts[0].pitches
         >>> len(partOnePitches)
@@ -8795,7 +8795,7 @@ class Stream(core.StreamCoreMixin, base.Music21Object):
         Return a dictionary of pitch class usage (count)
         by selecting an attribute of the Pitch object.
 
-        >>> from music21 import corpus
+        >>> # from music21 import corpus
         >>> a = corpus.parse('bach/bwv324.xml')
         >>> pcCount = a.pitchAttributeCount('pitchClass')
         >>> for n in sorted(list(pcCount.keys())):
@@ -8859,7 +8859,7 @@ class Stream(core.StreamCoreMixin, base.Music21Object):
         classes provided in a the `classFilterList` list and having
         the attribute specified by `attrName`.
 
-        >>> from music21 import corpus
+        >>> # from music21 import corpus
         >>> a = corpus.parse('bach/bwv324.xml')
         >>> a.parts[0].flat.attributeCount(note.Note, 'quarterLength')
         {1.0: 12, 2.0: 11, 4.0: 2}
@@ -12349,7 +12349,7 @@ class Score(Stream):
         same measure range for all Parts.
 
 
-        >>> from music21 import corpus
+        >>> # from music21 import corpus
         >>> a = corpus.parse('bach/bwv324.xml')
         >>> # contains 1 measure
         >>> len(a.measure(3).parts[0].getElementsByClass('Measure'))
@@ -12888,7 +12888,7 @@ class Opus(Stream):
         merging and returning a single Score with merged Metadata.
 
 
-        >>> from music21 import corpus
+        >>> # from music21 import corpus
         >>> o = corpus.parse('josquin/milleRegrets')
         >>> s = o.mergeScores()
         >>> s.metadata.title

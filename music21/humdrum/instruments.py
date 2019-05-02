@@ -269,7 +269,7 @@ class Test(unittest.TestCase):
 
 
     def testHumdrumParse(self):
-        from music21 import corpus
+        # from music21 import corpus
         c = corpus.parse('Palestrina/Kyrie')
         foundInstruments = []
         for x in c.recurse():

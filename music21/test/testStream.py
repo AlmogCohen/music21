@@ -183,7 +183,7 @@ class TestExternal(unittest.TestCase):
         this is presently not showing instruments 
         probably b/c when appending to s Stream activeSite is set to that stream
         '''
-        from music21 import corpus, converter
+        # from music21 import corpus, converter
         a = converter.parse(corpus.getWork(['mozart', 'k155','movement2.xml']))
         b = a[8][4:8]
         c = a[8][8:12]
@@ -608,7 +608,7 @@ class Test(unittest.TestCase):
         s.insert(8, meter.TimeSignature("3/4") )
         self.assertEqual(len(s.flat.notes), 80)
 
-        from music21 import corpus, converter
+        # from music21 import corpus, converter
         thisWork = corpus.getWork('corelli/opus3no1/1grave')
         a = converter.parse(thisWork)
 
@@ -640,7 +640,7 @@ class Test(unittest.TestCase):
         '''
         import music21.stream # needed to do fully-qualified isinstance name checking
 
-        from music21 import corpus
+        # from music21 import corpus
         a = corpus.parse('corelli/opus3no1/1grave')
         # test basic activeSite relationships
         b = a[8]
@@ -710,7 +710,7 @@ class Test(unittest.TestCase):
     def testGetInstrumentFromMxl(self):
         '''Test getting an instrument from an mxl file
         '''
-        from music21 import corpus, converter
+        # from music21 import corpus, converter
 
         # manually set activeSite to associate 
         a = converter.parse(corpus.getWork(['corelli', 'opus3no1', 
@@ -1099,7 +1099,7 @@ class Test(unittest.TestCase):
         '''Test stripTies using the Score method
         '''
 
-        from music21 import corpus, converter
+        # from music21 import corpus, converter
         from music21.musicxml import testPrimitive
 
         # This score has 4 parts, each with eight measures, and 2 half-notes
@@ -1206,7 +1206,7 @@ class Test(unittest.TestCase):
     #    assert trimPlayingWhileSounding[1].duration.quarterLength == 3.5
 
     def testMeasureRange(self):
-        from music21 import corpus
+        # from music21 import corpus
         a = corpus.parse('bach/bwv324.xml')
         b = a.parts[3].measures(4,6)
         self.assertEqual(len(b.getElementsByClass('Measure')), 3) 
@@ -1270,7 +1270,7 @@ class Test(unittest.TestCase):
 
 
     def testMeasureOffsetMap(self):
-        from music21 import corpus
+        # from music21 import corpus
         a = corpus.parse('bach/bwv324.xml')
 
         mOffsetMap = a.parts[0].measureOffsetMap()
@@ -1326,7 +1326,7 @@ class Test(unittest.TestCase):
 
 
     def testMeasureOffsetMapPostTie(self):
-        from music21 import corpus, stream
+        # from music21 import corpus, stream
         
         a = corpus.parse('bach/bwv4.8.xml')
         # alto line syncopated/tied notes across bars
@@ -1834,7 +1834,7 @@ class Test(unittest.TestCase):
         Testing making measures of various sizes with a supplied single element meter stream. 
         This illustrates an approach to partitioning elements by various sized windows. 
         '''
-        from music21 import corpus
+        # from music21 import corpus
         sBach = corpus.parse('bach/bwv324.xml')
         meterStream = Stream()
         meterStream.insert(0, meter.TimeSignature('2/4'))
@@ -1983,7 +1983,7 @@ class Test(unittest.TestCase):
         self.assertEqual([s[0], s[1]], [n3, n1])
 
     def testReplaceA1(self):
-        from music21 import corpus
+        # from music21 import corpus
         sBach = corpus.parse('bach/bwv324.xml')
         partSoprano = sBach.parts[0]
 
@@ -2031,7 +2031,7 @@ class Test(unittest.TestCase):
         self.assertEqual(s3[0].getOffsetBySite(s3), 30)
 
     def testReplaceDerivated(self):
-        from music21 import corpus
+        # from music21 import corpus
         qj = corpus.parse('ciconia/quod_jactatur').parts[0].measures(1,2)
         qj.id = 'measureExcerpt'
 
@@ -2249,7 +2249,7 @@ class Test(unittest.TestCase):
         self.assertEqual(c1.pitches[2].accidental, None)
 
     def testMakeAccidentalsB(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('monteverdi/madrigal.5.3.rntxt')
         m34 = s.parts[0].getElementsByClass('Measure')[33]
         c = m34.getElementsByClass('Chord')
@@ -2803,7 +2803,7 @@ class Test(unittest.TestCase):
     def testAugmentOrDiminishHighestTimes(self):
         '''Need to make sure that highest offset and time are properly updated
         '''
-        from music21 import corpus
+        # from music21 import corpus
         src = corpus.parse('bach/bwv324.xml')
         # get some measures of the soprano; just get the notes
         ex = src.parts[0].flat.notesAndRests.stream()[0:30]
@@ -2832,7 +2832,7 @@ class Test(unittest.TestCase):
     def testAugmentOrDiminishCorpus(self):
         '''Extract phrases from the corpus and use for testing 
         '''
-        from music21 import corpus
+        # from music21 import corpus
         # first method: iterating through notes
         src = corpus.parse('bach/bwv324.xml')
         # get some measures of the soprano; just get the notes
@@ -3462,7 +3462,7 @@ class Test(unittest.TestCase):
 
 
     def testAnalyze(self):
-        from music21 import corpus
+        # from music21 import corpus
 
         s = corpus.parse('bach/bwv66.6')
 
@@ -3849,7 +3849,7 @@ class Test(unittest.TestCase):
 
     def testMakeTies(self):
 
-        from music21 import corpus
+        # from music21 import corpus
 
         def collectAccidentalDisplayStatus(s):
             post = []
@@ -4200,7 +4200,7 @@ class Test(unittest.TestCase):
 
 
     def testMakeChordsImported(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bach/bwv66.6')
         #s.show()
         # using in place to get the stored flat version
@@ -4539,7 +4539,7 @@ class Test(unittest.TestCase):
 
     def testSliceByQuarterLengthsImported(self):
 
-        from music21 import corpus
+        # from music21 import corpus
         sSrc = corpus.parse('bwv66.6')
         s = copy.deepcopy(sSrc)
         for p in s.parts:
@@ -4617,7 +4617,7 @@ class Test(unittest.TestCase):
 
     def testSliceByGreatestDivisorImported(self):
 
-        from music21 import corpus
+        # from music21 import corpus
         sSrc = corpus.parse('bwv66.6')
         s = copy.deepcopy(sSrc)
         for p in s.parts:
@@ -4688,7 +4688,7 @@ class Test(unittest.TestCase):
 
 
     def testSliceAtOffsetsImported(self):
-        from music21 import corpus
+        # from music21 import corpus
         sSrc = corpus.parse('bwv66.6')
 
         post = sSrc.parts[0].flat.sliceAtOffsets([.25, 1.25, 3.25])
@@ -4737,7 +4737,7 @@ class Test(unittest.TestCase):
                          [(0.0, 1.5), (1.5, 1.5)] )
 
     def testSliceByBeatImported(self):
-        from music21 import corpus
+        # from music21 import corpus
         sSrc = corpus.parse('bwv66.6')
         post = sSrc.parts[0].sliceByBeat()
         self.assertEqual([e.offset for e in post.flat.notesAndRests],  
@@ -4749,7 +4749,7 @@ class Test(unittest.TestCase):
         #post.show()
 
     def testChordifyImported(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('luca/gloria')
         #s.show()
         post = s.measures(0, 20, gatherSpanners=False)
@@ -4915,7 +4915,7 @@ class Test(unittest.TestCase):
         
 
     def testChordifyC(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('schoenberg/opus19/movement6')
         #s.show()
         m1 = s.parts[0].getElementsByClass('Measure')[0]
@@ -4972,7 +4972,7 @@ class Test(unittest.TestCase):
 
 
     def testOpusSearch(self):
-        from music21 import corpus
+        # from music21 import corpus
         import re
         o = corpus.parse('essenFolksong/erk5')
         s = o.getScoreByTitle('blauen')
@@ -5020,7 +5020,7 @@ class Test(unittest.TestCase):
 
 
     def testGetElementsByContextStream(self):
-        from music21 import corpus
+        # from music21 import corpus
 
         s = corpus.parse('bwv66.6')
         for p in s.parts:
@@ -5185,7 +5185,7 @@ class Test(unittest.TestCase):
 
 
     def testPartsToVoicesA(self):
-        from music21 import corpus
+        # from music21 import corpus
         s0 = corpus.parse('bwv66.6')
         #s.show()
         s1 = s0.partsToVoices(2)
@@ -5246,7 +5246,7 @@ class Test(unittest.TestCase):
 
 
     def testPartsToVoicesB(self):
-        from music21 import corpus
+        # from music21 import corpus
         # this work has five parts: results in e parts
         s0 = corpus.parse('corelli/opus3no1/1grave')
         self.assertEqual(len(s0.parts), 3)
@@ -5308,7 +5308,7 @@ class Test(unittest.TestCase):
 
     def testVoicesToPartsA(self):
         
-        from music21 import corpus
+        # from music21 import corpus
         s0 = corpus.parse('bwv66.6')
         #s.show()
         s1 = s0.partsToVoices(2) # produce two parts each with two voices
@@ -5451,7 +5451,7 @@ class Test(unittest.TestCase):
 
 
     def testAddSlurByMelisma(self):
-        from music21 import corpus, spanner
+        # from music21 import corpus, spanner
         s = corpus.parse('luca/gloria')
         ex = s.parts[0]
         nStart = None
@@ -5544,7 +5544,7 @@ class Test(unittest.TestCase):
 
 
     def testStripTiesImportedB(self):
-        from music21 import corpus
+        # from music21 import corpus
 
         # this file was imported by sibelius and does not have completeing ties
         sMonte = corpus.parse('monteverdi/madrigal.4.2.xml')
@@ -5666,7 +5666,7 @@ class Test(unittest.TestCase):
 
 
     def testDerivationC(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bach/bwv66.6')
         p1 = s.parts['Soprano']
         pMeasures = p1.measures(3, 10)
@@ -5696,7 +5696,7 @@ class Test(unittest.TestCase):
 
 
     def testcontainerHierarchyA(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bach/bwv66.6')
         # the part is not derived from anything yet
         self.assertEqual([str(e.__class__) for e in s[1][2][3].containerHierarchy()], 
@@ -5789,7 +5789,7 @@ class Test(unittest.TestCase):
 
 
     def testRecurseA(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         # default
         rElements = list(s.recurse()) # NOTE: list(s.recurse()) 
@@ -5845,7 +5845,7 @@ class Test(unittest.TestCase):
 
 
     def testRecurseB(self):
-        from music21 import corpus
+        # from music21 import corpus
 
         s = corpus.parse('madrigal.5.8.rntxt')
         self.assertEqual(len(s.flat.getElementsByClass('KeySignature')), 1)
@@ -5855,7 +5855,7 @@ class Test(unittest.TestCase):
 
 
     def testTransposeScore(self):
-        from music21 import corpus
+        # from music21 import corpus
 
         s = corpus.parse('bwv66.6')
         p1 = s.parts[0]
@@ -5884,7 +5884,7 @@ class Test(unittest.TestCase):
         #b = a.flat.extendDuration(dynamics.Dynamic)    
 
     def testSpannerTransferA(self):
-        from music21 import corpus
+        # from music21 import corpus
         # test getting spanners after .measures extraction
         s = corpus.parse('corelli/opus3no1/1grave')
         post = s.parts[0].measures(5, 10)
@@ -5900,7 +5900,7 @@ class Test(unittest.TestCase):
 
 
     def testMeasureGrouping(self):
-        from music21 import corpus
+        # from music21 import corpus
         def parseMeasures(piece):
             #The measures of the piece, for a unique extraction
             voicesMeasures = []
@@ -6021,7 +6021,7 @@ class Test(unittest.TestCase):
 
 
     def testFlatCachingA(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         flat1 = s.flat
         flat2 = s.flat
@@ -6032,7 +6032,7 @@ class Test(unittest.TestCase):
 
 
     def testFlatCachingB(self):
-        from music21 import corpus
+        # from music21 import corpus
         sSrc = corpus.parse('bach/bwv13.6.xml')
         sPart = sSrc.getElementById('Alto')
         ts = meter.TimeSignature('6/8')
@@ -6056,7 +6056,7 @@ class Test(unittest.TestCase):
                                   '2 1/3', '2 2/3', '1', '1 2/3', '2', '2 1/3'])
 
     def testFlatCachingC(self):
-        from music21 import corpus, stream
+        # from music21 import corpus, stream
         qj = corpus.parse('ciconia/quod_jactatur').parts[0]
         unused_idFlat1 = id(qj.flat)
         #environLocal.printDebug(['idFlat1', idFlat1])
@@ -6084,7 +6084,7 @@ class Test(unittest.TestCase):
 
     def testSemiFlatCachingA(self):
 
-        from music21 import corpus      
+        # from music21 import corpus      
         s = corpus.parse('bwv66.6')
         ssf1 = s.semiFlat
         ssf2 = s.semiFlat
@@ -6238,7 +6238,7 @@ class Test(unittest.TestCase):
 
 
     def testFinalBarlinePropertyB(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         sop = s.parts[0]
         self.assertEqual(str(sop.finalBarline), '<music21.bar.Barline style=final>')
@@ -6350,7 +6350,7 @@ class Test(unittest.TestCase):
 
     def testSecondsPropertyB(self):
 
-        from music21 import corpus, tempo
+        # from music21 import corpus, tempo
 
         s = corpus.parse('bwv66.6')
         sFlat = s.flat 
@@ -6398,7 +6398,7 @@ class Test(unittest.TestCase):
 
     # TODO: New piece with Metronome Mark Boundaries
 #     def testMetronomeMarkBoundaries(self):
-#         from music21 import corpus
+#         # from music21 import corpus
 #         s = corpus.parse('hwv56/movement2-09.md')
 #         mmBoundaries = s.metronomeMarkBoundaries()
 #         self.assertEqual(str(mmBoundaries), 
@@ -6597,7 +6597,7 @@ class Test(unittest.TestCase):
         self.assertEqual(idB, ['C', 'C', 'C', 'C', 'C', 'C', 'C', 'C'])
 
     def testChordifyTagPartB(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         idSoprano = []
         idAlto = []
@@ -6759,7 +6759,7 @@ class Test(unittest.TestCase):
                          ])
 
     def testExtendTiesB(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         sChords = s.measures(9, 9).chordify()
         #sChords = s.chordify()
@@ -6860,7 +6860,7 @@ class Test(unittest.TestCase):
 
 
     def testSortingAfterInsertA(self):
-        from music21 import corpus
+        # from music21 import corpus
         import math
 
         s = corpus.parse('bwv66.6')
@@ -6919,7 +6919,7 @@ class Test(unittest.TestCase):
 
     def testInvertDiatonicA(self):
         # TODO: Check results
-        from music21 import corpus, stream
+        # from music21 import corpus, stream
 
         qj = corpus.parse('ciconia/quod_jactatur').parts[0]
 
@@ -6930,7 +6930,7 @@ class Test(unittest.TestCase):
 
 
     def testMeasuresA(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         ex = s.parts[0].measures(3,6)
 
@@ -6956,7 +6956,7 @@ class Test(unittest.TestCase):
 
 
     def testMeasuresB(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('luca/gloria')
         y = s.measures(50,90)
 
@@ -6981,7 +6981,7 @@ class Test(unittest.TestCase):
 
 
     def testMeasuresC(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         ex = s.parts[0].measures(3,6)
         for n in list(ex.recurse(classFilter=['Note'])):
@@ -7101,7 +7101,7 @@ class Test(unittest.TestCase):
         #s.show()
 
     def testMakeVoicesB(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6') 
         #s.measures(6,7).show()
         sMeasures = s.measures(6,7)
@@ -7161,7 +7161,7 @@ class Test(unittest.TestCase):
     def testSplitAtQuarterLengthC(self):
         '''Test splitting a Score
         '''
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         sLeft, sRight = s.splitAtQuarterLength(6)
         
@@ -7552,7 +7552,7 @@ class Test(unittest.TestCase):
         #s.show()
 
     def testMeasureTemplateAll(self):
-        from music21 import corpus
+        # from music21 import corpus
         b = corpus.parse('bwv66.6')
         bass = b.parts[3]
         bassEmpty = bass.measureTemplate(fillWithRests=False, customRemove=True)

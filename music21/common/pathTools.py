@@ -60,7 +60,7 @@ def getCorpusFilePath():
     >>> fp.endswith('music21/corpus') or fp.endswith(r'music21\corpus')
     True
     '''
-    from music21 import corpus
+    # from music21 import corpus
     coreCorpus = corpus.corpora.CoreCorpus()
     if coreCorpus.manualCoreCorpusPath is None:
         return os.path.join(getSourceFilePath(), 'corpus')

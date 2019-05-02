@@ -402,7 +402,7 @@ class Test(unittest.TestCase):
 
 
     def xtestfindConsecutiveScaleB(self):
-        from music21 import corpus
+        # from music21 import corpus
 
         scGMajor = scale.MajorScale('g4')
         scAMajor = scale.MajorScale('a4')

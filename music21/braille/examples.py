@@ -275,7 +275,7 @@ Barline final ⠣⠅
 
     def testVerdiDebug(self):
         #self.maxDiff = None
-        from music21 import corpus
+        # from music21 import corpus
         from music21.braille.translate import objectToBraille
         verdi = corpus.parse('verdi/laDonnaEMobile')
         x = objectToBraille(verdi, debug=True)

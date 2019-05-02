@@ -1115,7 +1115,7 @@ class Test(unittest.TestCase):
         self.assertEqual(a.sharps, None)
 
     def testTonalAmbiguityA(self):
-        from music21 import corpus, stream
+        # from music21 import corpus, stream
 #         s = corpus.parse('bwv64.2')
 #         k = s.analyze('KrumhanslSchmuckler')
 #         k.tonalCertainty(method='correlationCoefficient')

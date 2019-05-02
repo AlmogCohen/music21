@@ -3259,7 +3259,7 @@ class Test(unittest.TestCase):
 
         sc1 = MajorScale()
         # deriving a new scale from the pitches found in a collection
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         sc3 = sc1.derive(s.parts['soprano'])
         self.assertEqual(str(sc3), '<music21.scale.MajorScale A major>')
@@ -3916,7 +3916,7 @@ Franck Jedrzejewski continued fractions approx. of 12-tet
         
         # fokker_12.scl  Fokker's 7-limit 12-tone just scale
         # pyth_12.scl                    12  12-tone Pythagorean scale
-        from music21 import corpus
+        # from music21 import corpus
 
         s = corpus.parse('bwv66.6')
         p1 = s.parts[0]
@@ -3943,7 +3943,7 @@ Franck Jedrzejewski continued fractions approx. of 12-tet
         
         # fokker_12.scl  Fokker's 7-limit 12-tone just scale
         # pyth_12.scl                    12  12-tone Pythagorean scale
-        from music21 import corpus
+        # from music21 import corpus
 
         sc = ScalaScale('C4', 'fokker_12.scl')
         pl = sc.pitches
@@ -3969,7 +3969,7 @@ Franck Jedrzejewski continued fractions approx. of 12-tet
         flats (except B-flat) to inflect the accidentals
         '''
         
-        from music21 import corpus, instrument
+        # from music21 import corpus, instrument
 
         s = corpus.parse('luca/gloria').measures(70,79)
         for p in s.parts:

@@ -1847,7 +1847,7 @@ class Test(unittest.TestCase):
         self.assertIs(outStream.spanners[0].getFirst(), outStream.notes[0])
 
     def testFreezeThawCorpusFileWithSpanners(self):
-        from music21 import corpus
+        # from music21 import corpus
         c = corpus.parse('luca/gloria')
         sf = StreamFreezer(c)
         data = sf.writeStr(fmt='pickle')
@@ -1860,7 +1860,7 @@ class Test(unittest.TestCase):
 
     def xtestSimplePickle(self):
         from music21 import freezeThaw
-        from music21 import corpus
+        # from music21 import corpus
 
         c = corpus.parse('bwv66.6').parts[0].measure(0).notes
         #c.show('t')
@@ -1902,7 +1902,7 @@ class Test(unittest.TestCase):
 
     def xtestFreezeThawPickle(self):
         from music21 import freezeThaw
-        from music21 import corpus
+        # from music21 import corpus
 
         c = corpus.parse('luca/gloria')
         #c.show('t')
@@ -1953,7 +1953,7 @@ class Test(unittest.TestCase):
 
     def testFreezeThawVariant(self):
         from music21 import freezeThaw
-        from music21 import corpus
+        # from music21 import corpus
         from music21 import variant
         from music21 import stream
         from music21 import note

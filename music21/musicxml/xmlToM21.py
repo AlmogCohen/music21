@@ -4102,7 +4102,7 @@ class Test(unittest.TestCase):
 
 
     def testBarRepeatConversion(self):
-        from music21 import corpus
+        # from music21 import corpus
         #a = converter.parse(testPrimitive.simpleRepeat45a)
         # this is a good example with repeats
         s = corpus.parse('k80/movement3')
@@ -4178,7 +4178,7 @@ class Test(unittest.TestCase):
 
 
     def testMultipleStavesPerPartC(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('schoenberg/opus19/movement2')
         self.assertEqual(len(s.parts), 2)
 
@@ -4233,7 +4233,7 @@ class Test(unittest.TestCase):
 
 
     def testTextExpressionsC(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
         p = s.parts[0]
         for m in p.getElementsByClass('Measure'):
@@ -4251,7 +4251,7 @@ class Test(unittest.TestCase):
 
 
     def testTextExpressionsD(self):
-        from music21 import corpus
+        # from music21 import corpus
         # test placing text expression in arbitrary locations
         s = corpus.parse('bwv66.6')
         p = s.parts[-1] # get bass
@@ -4304,7 +4304,7 @@ class Test(unittest.TestCase):
         self.assertEqual(len(s.flat.getElementsByClass(repeat.DaCapoAlCoda)), 1)
 
     def testImportRepeatBracketA(self):
-        from music21 import corpus
+        # from music21 import corpus
         # has repeats in it; start with single emasure
         s = corpus.parse('opus74no1', 3)
         # there are 2 for each part, totaling 8
@@ -4528,7 +4528,7 @@ class Test(unittest.TestCase):
 
 
     def testHarmonyA(self):
-        from music21 import corpus
+        # from music21 import corpus
 
         s = corpus.parse('leadSheet/berlinAlexandersRagtime.xml')
         self.assertEqual(len(s.flat.getElementsByClass('ChordSymbol')), 19)
@@ -4641,7 +4641,7 @@ class Test(unittest.TestCase):
                                u'pos 1000/1500 (upper right)'])
 
     def testImportSlursA(self):
-        from music21 import corpus
+        # from music21 import corpus
         # this is a good test as this encoding uses staffs, not parts
         # to encode both parts; this requires special spanner handling
         s = corpus.parse('mozart/k545/movement1_exposition')
@@ -4743,7 +4743,7 @@ class Test(unittest.TestCase):
         self.assertRaises(bar.BarException, MP.xmlToRepeat, mxBarline)
 
     def testStaffLayout(self):
-        from music21 import corpus, converter
+        # from music21 import corpus, converter
         # NB using getWorkList to change format to oldmusicxml as necessary for testing.
         c = converter.parse(corpus.corpora.CoreCorpus().getWorkList('demos/layoutTest.xml')[0], 
                             format='musicxml', 
@@ -4783,7 +4783,7 @@ class Test(unittest.TestCase):
         self.assertEqual(sizes, [80.0, 120.0, 80.0])
 
     def testStaffLayoutMore(self):
-        from music21 import corpus, converter
+        # from music21 import corpus, converter
         # NB using getWorkList to change format to oldmusicxml as necessary for testing.
         c = converter.parse(corpus.corpora.CoreCorpus().getWorkList('demos/layoutTestMore.xml')[0], 
                             format='musicxml', 
@@ -4854,7 +4854,7 @@ class Test(unittest.TestCase):
 
         Many more tests could be done on this piece...
         '''
-        from music21 import corpus
+        # from music21 import corpus
         c = corpus.parse('luca/gloria')
         r = c.parts[1].measure(99).getElementsByClass('Rest')[0]
         bracketAttachedToRest = r.getSpannerSites()[0]

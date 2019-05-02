@@ -724,7 +724,7 @@ class Test(unittest.TestCase):
 
 
     def testOpusImport(self):
-        from music21 import corpus
+        # from music21 import corpus
         from music21 import abcFormat
 
         # replace w/ ballad80, smaller or erk5
@@ -765,7 +765,7 @@ class Test(unittest.TestCase):
 
     def testMultiWorkImported(self):
 
-        from music21 import corpus
+        # from music21 import corpus
         # defines multiple works, will return an opus
         o = corpus.parse('josquin/milleRegrets')
         self.assertEqual(len(o), 4)
@@ -804,7 +804,7 @@ class Test(unittest.TestCase):
 
     def testLocaleOfCompositionImport(self):
 
-        from music21 import corpus
+        # from music21 import corpus
         # defines multiple works, will return an opus
         o = corpus.parse('essenFolksong/teste')
         self.assertEqual(len(o), 8)
@@ -842,7 +842,7 @@ class Test(unittest.TestCase):
     def testRepeatBracketsB(self):
         from music21.abcFormat import testFiles
         from music21 import converter
-        from music21 import corpus
+        # from music21 import corpus
         s = converter.parse(testFiles.morrisonsJig)
         # TODO: get
         self.assertEqual(len(s.flat.getElementsByClass('RepeatBracket')), 2)
@@ -882,7 +882,7 @@ class Test(unittest.TestCase):
     def testTranslateA(self):
         # this tests a few files in this collection, some of which are hard to
         # parse
-        from music21 import corpus
+        # from music21 import corpus
         for fn in (
             'ToCashellImGoingJig.abc',
             'SundayIsMyWeddingDayJig.abc',
@@ -908,7 +908,7 @@ class Test(unittest.TestCase):
         Numbers 637 and 749 fail
         '''
 
-        from music21 import corpus
+        # from music21 import corpus
         for fn in ['airdsAirs/book4.abc']:
             s = corpus.parse(fn)
             assert s is not None
@@ -916,12 +916,12 @@ class Test(unittest.TestCase):
             #s.show()
 
     def testTranslateBrokenDuration(self):
-        from music21 import corpus
+        # from music21 import corpus
         unused = corpus.parse('han2.abc', number=445)
 
 
     def xtestMergeScores(self):
-        from music21 import corpus
+        # from music21 import corpus
         unused = corpus.parse('josquin/laDeplorationDeLaMorteDeJohannesOckeghem', forceSource=True)
         # this was getting incorrect Clefs...
  

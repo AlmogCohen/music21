@@ -43,7 +43,7 @@ def cacheMetadata(corpusNames=('local', 'core', 'virtual'),
     Call as ``metadata.cacheMetadata()``
 
     '''
-    from music21 import corpus
+    # from music21 import corpus
     from music21.corpus import corpora
 
     if not common.isIterable(corpusNames):
@@ -154,7 +154,7 @@ class MetadataCachingJob(object):
 
     def parseFilePath(self):
         from music21 import converter
-        from music21 import corpus
+        # from music21 import corpus
         parsedObject = None
         try:
             if self.useCorpus is False:

@@ -115,7 +115,7 @@ except ImportError:
 from music21 import common
 from music21 import converter
 from music21 import stream #@UnusedImport
-from music21 import corpus #@UnusedImport
+# # from music21 import corpus #@UnusedImport
 from music21 import note #@UnusedImport
 from music21 import features #@UnusedImport
 from music21 import harmony #@UnusedImport

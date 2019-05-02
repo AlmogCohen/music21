@@ -1944,7 +1944,7 @@ class Test(unittest.TestCase):
 
 
 #     def testMeasureNumberImport(self):
-#         from music21 import corpus
+#         # from music21 import corpus
 #         s = corpus.parse('symphony94/02')
 #         for p in s.parts:
 #             match = []

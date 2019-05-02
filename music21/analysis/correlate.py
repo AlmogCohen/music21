@@ -218,7 +218,7 @@ class Test(unittest.TestCase):
 
 
     def testActivityMatchPitchToDynamic(self):
-        from music21 import corpus
+        # from music21 import corpus
 
         a = corpus.parse('schoenberg/opus19', 2)
 

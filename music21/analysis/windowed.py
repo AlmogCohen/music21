@@ -319,7 +319,7 @@ class Test(unittest.TestCase):
         pass
 
     def testBasic(self):
-        from music21 import corpus
+        # from music21 import corpus
         from music21.analysis import discrete
         # get a procedure 
         
@@ -399,7 +399,7 @@ class Test(unittest.TestCase):
 
     def testVariableWindowing(self):
         from music21.analysis import discrete
-        from music21 import corpus, graph
+        # from music21 import corpus, graph
         
         p = discrete.KrumhanslSchmuckler()
         s = corpus.parse('bach/bwv66.6')

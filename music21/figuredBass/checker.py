@@ -70,7 +70,7 @@ def extractHarmonies(music21Stream):
     moments are spelled out from the first or highest :class:`~music21.stream.Part`
     to the lowest one. 
 
-    >>> from music21 import corpus
+    >>> # from music21 import corpus
     >>> score = corpus.parse("corelli/opus3no1/1grave").measures(1,3)
     >>> #_DOCS_SHOW score.show()
     
@@ -113,7 +113,7 @@ def createOffsetMapping(music21Part):
     '''
     Creates an initial offset mapping of a :class:`~music21.stream.Part`.
     
-    >>> from music21 import corpus
+    >>> # from music21 import corpus
     >>> from music21.figuredBass import checker
     >>> score = corpus.parse("corelli/opus3no1/1grave").measures(1,3)   
     >>> v0 = score[0]
@@ -144,7 +144,7 @@ def correlateHarmonies(currentMapping, music21Part):
     '''
     Adds a new :class:`~music21.stream.Part` to an existing offset mapping.
     
-    >>> from music21 import corpus
+    >>> # from music21 import corpus
     >>> from music21.figuredBass import checker
     >>> score = corpus.parse("corelli/opus3no1/1grave").measures(1,3)   
     >>> v0 = score[0]
@@ -205,7 +205,7 @@ def checkSinglePossibilities(music21Stream, functionToApply, color="#FF0000", de
 
     .. note:: Colored notes are NOT supported in Finale. 
 
-    >>> from music21 import corpus
+    >>> # from music21 import corpus
     >>> music21Stream = corpus.parse("corelli/opus3no1/1grave").measures(1,6)
     >>> #_DOCS_SHOW music21Stream.show()
 
@@ -268,7 +268,7 @@ def checkConsecutivePossibilities(music21Stream, functionToApply, color="#FF0000
 
     .. note:: Colored notes are NOT supported in Finale. 
 
-    >>> from music21 import corpus
+    >>> # from music21 import corpus
     >>> music21Stream = corpus.parse('theoryExercises/checker_demo.xml')
     >>> #_DOCS_SHOW music21Stream.show()
     

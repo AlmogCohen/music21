@@ -1292,7 +1292,7 @@ class TestExternal(unittest.TestCase):
         pass
         
     def testXMLShow(self):
-        from music21 import corpus
+        # from music21 import corpus
         c = corpus.parse('bwv66.6')
         c.show() # musicxml
 

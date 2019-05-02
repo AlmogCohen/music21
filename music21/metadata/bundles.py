@@ -100,7 +100,7 @@ class MetadataEntry(object):
     ### PUBLIC METHODS ###
 
     def parse(self):
-        from music21 import corpus
+        # from music21 import corpus
         if self.number is not None:
             return corpus.parse(self.sourcePath, number=self.number)
         else:
@@ -140,7 +140,7 @@ class MetadataBundle(object):
     An object that provides access to, searches within, and stores and loads
     multiple Metadata objects.
 
-    >>> from music21 import corpus, metadata
+    >>> # from music21 import corpus, metadata
     >>> coreBundle = corpus.corpora.CoreCorpus().metadataBundle
     >>> coreBundle
     <music21.metadata.bundles.MetadataBundle 'core': {144... entries}>
@@ -237,7 +237,7 @@ class MetadataBundle(object):
     ### INITIALIZER ###
 
     def __init__(self, expr=None):
-        from music21 import corpus
+        # from music21 import corpus
         self._metadataEntries = OrderedDict()
         if not isinstance(expr, (str, corpus.corpora.Corpus, type(None))):
             raise MetadataBundleException("Need to take a string, corpus, or None as expression")
@@ -674,7 +674,7 @@ class MetadataBundle(object):
         Returns a list of file paths with errors and stores the extracted
         metadata in `self._metadataEntries`.
 
-        >>> from music21 import corpus, metadata
+        >>> # from music21 import corpus, metadata
         >>> metadataBundle = metadata.bundles.MetadataBundle()
         >>> p = corpus.corpora.CoreCorpus().getWorkList('bach/bwv66.6')
         >>> metadataBundle.addFromPaths(
@@ -1063,7 +1063,7 @@ class MetadataBundle(object):
 
         Return the rebuilt metadata bundle.
         '''
-        from music21 import corpus
+        # from music21 import corpus
         if self.filePath is None:
             return self
         self.clear()
@@ -1084,7 +1084,7 @@ class MetadataBundle(object):
         Perform search, on all stored metadata, permit regular expression
         matching.
 
-        >>> from music21 import corpus, metadata
+        >>> # from music21 import corpus, metadata
         >>> workList = corpus.corpora.CoreCorpus().getWorkList('ciconia')
         >>> metadataBundle = metadata.bundles.MetadataBundle()
         >>> failedPaths = metadataBundle.addFromPaths(

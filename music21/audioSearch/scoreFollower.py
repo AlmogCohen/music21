@@ -575,7 +575,7 @@ class TestExternal(unittest.TestCase):
         pass
 
     def xtestRunScoreFollower(self):
-        from music21 import corpus
+        # from music21 import corpus
         scNotes = corpus.parse('luca/gloria').parts[0].flat.notesAndRests
         ScF = ScoreFollower(scoreStream=scNotes)
         ScF.runScoreFollower(plot=False, useMic=True, seconds=10.0)

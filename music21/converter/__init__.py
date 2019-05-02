@@ -1274,7 +1274,7 @@ class TestExternal(unittest.TestCase):
                 raise
 
     def testFreezer(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bach/bwv66.6.xml')
         fp = freeze(s)
         s2 = thaw(fp)
@@ -1450,7 +1450,7 @@ class Test(unittest.TestCase):
 
     def testConversionMXClefTimeCorpus(self):
 
-        from music21 import corpus, clef, meter
+        # from music21 import corpus, clef, meter
         a = corpus.parse('luca')
 
         # there should be only one clef in each part
@@ -1567,7 +1567,7 @@ class Test(unittest.TestCase):
 
 
     def testConversionMXInstrument(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('schumann_clara/opus17', 3)
         #s.show()
         is1 = s.parts[0].flat.getElementsByClass('Instrument')
@@ -1714,7 +1714,7 @@ class Test(unittest.TestCase):
     def testConversionABCOpus(self):
 
         from music21.abcFormat import testFiles
-        from music21 import corpus
+        # from music21 import corpus
 
         s = parse(testFiles.theAleWifesDaughter)
         # get a Stream object, not an opus
@@ -1742,7 +1742,7 @@ class Test(unittest.TestCase):
 
     def testConversionABCWorkFromOpus(self):
         # test giving a work number at loading
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('essenFolksong/han1', number=6)
         self.assertEqual(isinstance(s, stream.Score), True)
         self.assertEqual(s.metadata.title, 'Yi gan hongqi kongzhong piao')

@@ -2321,7 +2321,7 @@ class TestExternal(unittest.TestCase):
 
     def testReadInXML(self):
         from music21 import harmony
-        from music21 import corpus, stream
+        # from music21 import corpus, stream
         testFile = corpus.parse('leadSheet/fosterBrownHair.xml')
 
 

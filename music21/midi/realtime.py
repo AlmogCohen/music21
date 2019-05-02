@@ -149,7 +149,7 @@ class Test(unittest.TestCase):
 class TestExternal(unittest.TestCase):
     
     def testBachDetune(self):
-        from music21 import corpus
+        # from music21 import corpus
         import random
         b = corpus.parse('bwv66.6')
         keyDetune = []
@@ -165,7 +165,7 @@ class TestExternal(unittest.TestCase):
         tests to see if the busyCallback function is called properly
         '''
         
-        from music21 import corpus
+        # from music21 import corpus
         import random
         
         def busyCounter(timeList):
@@ -189,7 +189,7 @@ class TestExternal(unittest.TestCase):
         sp.play(busyFunction=busyCounter, busyArgs=[timeCounter], busyWaitMilliseconds=500)
             
     def xtestPlayOneMeasureAtATime(self):
-        from music21 import corpus
+        # from music21 import corpus
         b = corpus.parse('bwv66.6')
         measures = [] # store for later
         maxMeasure = len(b.parts[0].getElementsByClass('Measure'))

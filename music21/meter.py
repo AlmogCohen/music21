@@ -4966,7 +4966,7 @@ class Test(unittest.TestCase):
         of 12, 11.5, 12, 13 quarters, where one of the parts is a PartStaff with
         multiple voices.
         '''
-        from music21 import corpus
+        # from music21 import corpus
         fautIl = corpus.parse('demos/incorrect_time_signature_pv')
         for m in fautIl.recurse().getElementsByClass("Measure"):
             m.timeSignature = m.bestTimeSignature()

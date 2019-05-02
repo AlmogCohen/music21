@@ -537,7 +537,7 @@ class Test(unittest.TestCase):
 
 
     def testCorpusDynamicsWedge(self):
-        from music21 import corpus
+        # from music21 import corpus
         a = corpus.parse('opus41no1/movement2') # has dynamics!
         b = a.parts[0].flat.getElementsByClass("Dynamic")
         self.assertEqual(len(b), 35)

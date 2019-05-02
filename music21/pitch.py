@@ -4771,7 +4771,7 @@ class Test(unittest.TestCase):
     def testAccidentalImport(self):
         '''Test that we are getting the properly set accidentals
         '''
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv438.xml')
         tenorMeasures = s.parts[2].getElementsByClass('Measure')
         pAltered = tenorMeasures[0].pitches[1]

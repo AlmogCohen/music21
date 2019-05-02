@@ -649,7 +649,7 @@ class Test(unittest.TestCase):
         #s.show('midi')
 
     def testRealizeVolumeB(self):
-        from music21 import corpus, dynamics
+        # from music21 import corpus, dynamics
         s = corpus.parse('bwv66.6')
 
         durUnit = s.highestTime  // 8 # let floor

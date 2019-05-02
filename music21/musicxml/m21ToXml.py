@@ -4742,7 +4742,7 @@ class TestExternal(unittest.TestCase):
         pass
 
 #     def testFindOneError(self):
-#         from music21 import corpus
+#         # from music21 import corpus
 # 
 #         b = corpus.parse('schoenberg')
 # 
@@ -4766,7 +4766,7 @@ class TestExternal(unittest.TestCase):
 
     def testSimple(self):
         from xml.etree.ElementTree import ElementTree as ETObj
-        from music21 import corpus#, converter
+        # from music21 import corpus#, converter
         import io
         import difflib
         

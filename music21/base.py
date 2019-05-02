@@ -3937,7 +3937,7 @@ class Test(unittest.TestCase):
     def testSitesMeasures(self):
         '''Can a measure determine the last Clef used?
         '''
-        from music21 import corpus, clef, stream
+        # from music21 import corpus, clef, stream
         a = corpus.parse('bach/bwv324.xml')
         measures = a.parts[0].getElementsByClass('Measure').stream() # measures of first part
 
@@ -4003,7 +4003,7 @@ class Test(unittest.TestCase):
     def testBeatAccess(self):
         '''Test getting beat data from various Music21Objects.
         '''
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bach/bwv66.6.xml')
         p1 = s.parts['Soprano']
 
@@ -4096,7 +4096,7 @@ class Test(unittest.TestCase):
     def testMeaureNumberAccess(self):
         '''Test getting measure numebr data from various Music21Objects.
         '''
-        from music21 import corpus, stream, note
+        # from music21 import corpus, stream, note
 
         s = corpus.parse('bach/bwv66.6.xml')
         p1 = s.parts['Soprano']
@@ -4204,7 +4204,7 @@ class Test(unittest.TestCase):
         self.assertEqual([n.offset for n in s.flat.notesAndRests], [0.0, 1.0, 5.0])
 
     def testPickupMeauresImported(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bach/bwv103.6')
 
         p = s.parts['soprano']
@@ -4569,7 +4569,7 @@ class Test(unittest.TestCase):
         self.assertEqual(n1.next('Note'), n2)
 
     def testNextC(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('bwv66.6')
 
         # getting time signature and key sig
@@ -4658,7 +4658,7 @@ class Test(unittest.TestCase):
 
 
     def testContextSitesA(self):
-        from music21 import corpus
+        # from music21 import corpus
         self.maxDiff = None
         c = corpus.parse('bwv66.6')
         c.id = 'bach'
@@ -4758,7 +4758,7 @@ class Test(unittest.TestCase):
       
 ## great isolation test, but no asserts for now...  
 #     def testPreviousA(self):
-#         from music21 import corpus
+#         # from music21 import corpus
 #         s = corpus.parse('bwv66.6')
 #         o = s.parts[0].iter.getElementsByClass('Measure')[2][1]      
 #         i = 20
@@ -4775,7 +4775,7 @@ class Test(unittest.TestCase):
 #         fixed a memo problem which could cause .previous() to run forever
 #         on flat/derived streams.
 #         '''
-#         from music21 import corpus
+#         # from music21 import corpus
 #         s = corpus.parse('luca/gloria')
 #         sf = s.flat
 #         o = sf[1]

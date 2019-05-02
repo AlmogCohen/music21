@@ -156,7 +156,7 @@ import unittest
 from collections import defaultdict
 
 from music21 import chord
-from music21 import corpus
+# from music21 import corpus
 from music21 import duration
 from music21 import exceptions21
 from music21 import interval

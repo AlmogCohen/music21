@@ -27,7 +27,7 @@ from collections import OrderedDict
 
 
 from music21 import common
-from music21 import corpus
+# # from music21 import corpus
 from music21 import duration
 from music21 import environment
 from music21 import exceptions21

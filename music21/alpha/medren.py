@@ -2111,19 +2111,19 @@ class TestExternal(unittest.TestCase):
         pass    
     
     def xtestBarlineConvert(self):
-        from music21 import corpus
+        # from music21 import corpus
         testPiece = corpus.parse('luca/gloria')
         setBarlineStyle(testPiece, 'tick')
         testPiece.show()
 
     def xtestScaling(self):
-        from music21 import corpus
+        # from music21 import corpus
         testPiece = corpus.parse('luca/gloria')
         scaleDurations(testPiece, .5, inPlace=True)
         testPiece.show()
 
     def xtestTransferTies(self):
-        from music21 import corpus
+        # from music21 import corpus
         testPiece = corpus.parse('luca/gloria')
         transferTies(testPiece)
         testPiece.show()
@@ -2139,7 +2139,7 @@ class TestExternal(unittest.TestCase):
         s.append([n1, n2])
 
     def xtestPythagSharps(self):
-        from music21 import corpus, midi
+        # from music21 import corpus, midi
         gloria = corpus.parse('luca/gloria')
         p = gloria.parts[0].flat
         for n in p.notes:
@@ -2154,7 +2154,7 @@ class TestExternal(unittest.TestCase):
         p.show('midi')
 
     def testHouseStyle(self):
-        from music21 import corpus
+        # from music21 import corpus
         gloria = corpus.parse('luca/gloria')
         gloriaNew = convertHouseStyle(gloria)
         gloriaNew.show()

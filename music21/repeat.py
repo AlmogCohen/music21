@@ -3670,7 +3670,7 @@ class Test(unittest.TestCase):
         Also has grace notes so it tests our importing of grace notes
         '''
         
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('ryansMammoth/BanjoReel')
         #s.show('text')
         self.assertEqual(len(s.parts), 1)        
@@ -3688,7 +3688,7 @@ class Test(unittest.TestCase):
     
 
     def testExpandRepeatsImportedB(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('GlobeHornpipe')
         self.assertEqual(len(s.parts), 1)        
         self.assertEqual(len(s.parts[0].getElementsByClass('Measure')), 18)        
@@ -4253,7 +4253,7 @@ class Test(unittest.TestCase):
 
 
     def testRepeatEndingsImportedA(self):
-        from music21 import corpus
+        # from music21 import corpus
         s = corpus.parse('ryansMammoth/BanjoReel')
         #s.show()
         firstNotesList = list(s.flat.notes)
@@ -4275,7 +4275,7 @@ class Test(unittest.TestCase):
 
 
     def testRepeatEndingsImportedB(self):
-        from music21 import corpus
+        # from music21 import corpus
         # last alternate endings in last bars
         # need to add import from abc
         s = corpus.parse('ryansMammoth/SmugglersReel')

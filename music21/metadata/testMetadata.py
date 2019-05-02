@@ -82,7 +82,7 @@ class Test(unittest.TestCase):
         self.assertEqual(mdNew.composer, 'Wolfgang Amadeus Mozart')
 
     def testRichMetadata01(self):
-        from music21 import corpus
+        # from music21 import corpus
         from music21 import metadata
 
         score = corpus.parse('jactatur')
@@ -136,7 +136,7 @@ class Test(unittest.TestCase):
             )
 
     def testWorkIds(self):
-        from music21 import corpus
+        # from music21 import corpus
         from music21 import metadata
 
         opus = corpus.parse('essenFolksong/teste')
@@ -154,7 +154,7 @@ class Test(unittest.TestCase):
             'Asien, Ostasien, China, Sichuan')
 
     def testMetadataSearch(self):
-        from music21 import corpus
+        # from music21 import corpus
         score = corpus.parse('ciconia')
         self.assertEqual(
             score.metadata.search(
@@ -179,7 +179,7 @@ class Test(unittest.TestCase):
 
     def testRichMetadata02(self):
         from music21 import VERSION
-        from music21 import corpus
+        # from music21 import corpus
         from music21 import metadata
         from music21 import test
         score = corpus.parse('bwv66.6')

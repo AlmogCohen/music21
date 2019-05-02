@@ -287,7 +287,7 @@ class TestExternal(unittest.TestCase):
         '''
         test a local version of this mess...
         '''
-        from music21 import corpus, environment
+        # from music21 import corpus, environment
         environLocal = environment.Environment()
         
         s = corpus.parse('luca/gloria').measures(1,19)

@@ -49,7 +49,7 @@ import unittest
 
 from music21 import clef
 #from music21 import common
-from music21 import corpus
+# from music21 import corpus
 from music21 import exceptions21
 from music21 import instrument
 from music21 import interval

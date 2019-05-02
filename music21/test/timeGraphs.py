@@ -214,7 +214,7 @@ class TestMusicXMLOutputParts(CallTest):
     '''This tries to isolate a problem whereby part creation is much faster than score creation. 
     '''
     def __init__(self):
-        from music21 import corpus
+        # from music21 import corpus
         self.s = corpus.parse('bach/bwv66.6', forceSource=True)
         #self.s = corpus.parse('beethoven/opus59no2/movement3', forceSource=True)
 
@@ -227,7 +227,7 @@ class TestMusicXMLOutputScore(CallTest):
     '''This tries to isolate a problem whereby part creation is much faster than score creation. 
     '''
     def __init__(self):
-        from music21 import corpus
+        # from music21 import corpus
         self.s = corpus.parse('bach/bwv66.6', forceSource=True)
         #self.s = corpus.parse('beethoven/opus59no2/movement3', forceSource=True)
 
@@ -289,7 +289,7 @@ class TestGetContextByClassA(CallTest):
 
     def __init__(self):
 
-        from music21 import corpus
+        # from music21 import corpus
         self.s = corpus.parse('bwv66.6')
 
 
@@ -344,7 +344,7 @@ class TestMusicXMLMultiPartOutput(CallTest):
 class TestCommonContextSearches(CallTest):
 
     def __init__(self):
-        from music21 import corpus
+        # from music21 import corpus
         self.s = corpus.parse('bwv66.6')
 
     def testFocus(self):
@@ -355,7 +355,7 @@ class TestCommonContextSearches(CallTest):
 class TestBigMusicXML(CallTest):
 
     def __init__(self):
-        from music21 import corpus
+        # from music21 import corpus
         self.s = corpus.parse('opus41no1')
 
     def testFocus(self):
@@ -365,7 +365,7 @@ class TestBigMusicXML(CallTest):
 class TestGetElementsByClassA(CallTest):
 
     def __init__(self):
-        from music21 import corpus
+        # from music21 import corpus
         self.s = corpus.parse('bwv66.6')
 
     def testFocus(self):
@@ -456,7 +456,7 @@ class TestGetContextByClassB(CallTest):
 class TestMeasuresA(CallTest):
 
     def __init__(self):
-        from music21 import corpus
+        # from music21 import corpus
         self.s = corpus.parse('symphony94/02')
 
     def testFocus(self):

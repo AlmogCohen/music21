@@ -3303,7 +3303,7 @@ class Test(unittest.TestCase):
 #         self.assertEqual(d.linked, False) # note set
 
     def xtestStrangeMeasure(self):
-        from music21 import corpus
+        # from music21 import corpus
         j1 = corpus.parse('trecento/PMFC_06-Jacopo-03a')
         x = j1.parts[0].getElementsByClass('Measure')[42]
         x._cache = {}

@@ -3341,7 +3341,7 @@ class Test(unittest.TestCase):
 
 
     def testExtractReferenceNumber(self):
-        from music21 import corpus
+        # from music21 import corpus
         fp = corpus.getWork('essenFolksong/test0')
 
         af = ABCFile()

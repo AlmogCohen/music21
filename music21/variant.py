@@ -2647,7 +2647,7 @@ class TestExternal(unittest.TestCase):
 
 
     def testMergeJacopoVariants(self):
-        from music21 import corpus
+        # from music21 import corpus
         j1 = corpus.parse('trecento/PMFC_06-Jacopo-03a')
         j2 = corpus.parse('trecento/PMFC_06-Jacopo-03b')
         jMerged = mergeVariantScores(j1, j2)

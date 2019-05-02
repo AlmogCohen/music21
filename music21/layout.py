@@ -1625,7 +1625,7 @@ class Test(unittest.TestCase):
         unused_raw = m21ToXml.GeneralObjectExporter().parse(s)
 
     def xtestGetPageMeasureNumbers(self):
-        from music21 import corpus
+        # from music21 import corpus
         c = corpus.parse('luca/gloria').parts[0]
         #c.show('text')
         retStr = ""
@@ -1639,7 +1639,7 @@ class Test(unittest.TestCase):
         '''
         we have had problems with attributes disappearing.
         '''
-        from music21 import corpus
+        # from music21 import corpus
         lt = corpus.parse('demos/layoutTest.xml')
         ls = divideByPages(lt, fastMeasures=True)
 

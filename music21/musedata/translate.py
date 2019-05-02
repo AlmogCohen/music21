@@ -412,7 +412,7 @@ class Test(unittest.TestCase):
 
 
 #     def testGetLyrics(self):
-#         from music21 import corpus
+#         # from music21 import corpus
 # 
 #         s = corpus.parse('hwv56', '1-08')
 #         self.assertEqual(len(s.parts), 2)
@@ -549,7 +549,7 @@ class Test(unittest.TestCase):
 
 
 #     def testMuseDataStage1A(self):
-#         from music21 import corpus
+#         # from music21 import corpus
 #         s = corpus.parse('k168', 1)
 # 
 #         self.assertEqual(len(s.parts), 4)
@@ -566,7 +566,7 @@ class Test(unittest.TestCase):
 #                [1.0, 2.0, 3.0])
 
 #     def testMuseDataStage1B(self):
-#         from music21 import corpus
+#         # from music21 import corpus
 #         s = corpus.parse('k169', 3)
 #         
 #         self.assertEqual(len(s.parts), 4)
@@ -585,7 +585,7 @@ class Test(unittest.TestCase):
 
 
 #     def testMuseDataImportTempoA(self):
-#         from music21 import corpus
+#         # from music21 import corpus
 #         # a small file
 #         s = corpus.parse('movement2-09.md')
 #         self.assertEqual(len(s.parts), 5)
@@ -605,7 +605,7 @@ class Test(unittest.TestCase):
 #         # be the only one with dynamics
 #         
 #         # TODO: Turn back on when a smaller work is found...
-#         from music21 import corpus
+#         # from music21 import corpus
 #         s = corpus.parse('symphony94', 3)
 #         sFlat = s.flat
 #         #s.show()
@@ -613,7 +613,7 @@ class Test(unittest.TestCase):
 # 
 # 
 #     def testMuseDataImportErrorA(self):
-#         from music21 import corpus
+#         # from music21 import corpus
 #         # this files was crashing in the handling of an error in beam notation
 #         s = corpus.parse('haydn/opus55no1/movement2.md')
 #         self.assertEqual(len(s.flat.getElementsByClass('Note')), 1735)
@@ -622,7 +622,7 @@ class Test(unittest.TestCase):
 # 
 #     def testMuseDataImportErrorB(self):
 #         # this file has a malformed END repeated twice
-#         from music21 import corpus
+#         # from music21 import corpus
 #         s = corpus.parse('haydn/opus71no1/movement1.zip')
 #         self.assertEqual(len(s.flat.getElementsByClass('Note')), 2792)
 

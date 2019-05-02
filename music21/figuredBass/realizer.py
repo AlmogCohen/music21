@@ -266,7 +266,7 @@ class FiguredBassLine(object):
             :width: 200
            
             
-        >>> from music21 import corpus
+        >>> # from music21 import corpus
         >>> sBach = corpus.parse('bach/bwv307')
         >>> sBach['bass'].measure(0).show("text")
         {0.0} <music21.clef.BassClef>

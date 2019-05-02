@@ -18,7 +18,7 @@ Each template returns a tuple of the form (data, contentType).
 '''
 import unittest
 
-#from music21 import corpus
+## from music21 import corpus
 from string import Template
 
 

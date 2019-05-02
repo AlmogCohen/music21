@@ -110,7 +110,7 @@ class Test(unittest.TestCase):
 
 
     def testBasicE(self):
-        from music21 import corpus, converter
+        # from music21 import corpus, converter
         s = corpus.parse('bwv66.6')
 
         temp = converter.freezeStr(s, fmt='pickle')        
@@ -214,7 +214,7 @@ class Test(unittest.TestCase):
 
 
     def testBigCorpus(self):
-        from music21 import corpus, converter
+        # from music21 import corpus, converter
         #import time
         #print time.time()  # 8.3 sec from pickle; 10.3 sec for forceSource...
         #s = corpus.parse('beethoven/opus133') #, forceSource = True)

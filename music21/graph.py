@@ -30,7 +30,7 @@ from music21 import base # for _missingImport
 
 from music21 import common
 from music21 import chord
-from music21 import corpus
+# from music21 import corpus
 from music21 import converter
 from music21 import dynamics
 from music21 import exceptions21
@@ -5353,7 +5353,7 @@ class Test(unittest.TestCase):
         self.assertEqual(graph.getColor('Steel Blue'), '#4682b4')
 
 #     def testMeasureNumbersA(self):
-#         from music21 import corpus, graph
+#         # from music21 import corpus, graph
 #         s = corpus.parse('bwv66.6')
 #         p = graph.PlotHorizontalBarPitchClassOffset(s)
 #         #p.process()

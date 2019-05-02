@@ -1308,7 +1308,7 @@ class Test(unittest.TestCase):
 
 
     def testLabelingA(self):
-        from music21 import corpus
+        # from music21 import corpus
         series = {'a':1, 'g-':2, 'g':3, 'a-':4, 
                   'f':5, 'e-':6, 'e':7, 'd':8, 
                   'c':9, 'c#':10, 'b-':11, 'b':12}

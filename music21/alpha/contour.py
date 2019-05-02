@@ -19,7 +19,7 @@ import unittest
 from music21 import base # for _missingImport testing.
 from music21 import repeat
 from music21 import exceptions21
-from music21 import corpus
+# from music21 import corpus
 
 from music21 import environment
 _MOD = 'contour.py'

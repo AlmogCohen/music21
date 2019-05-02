@@ -707,7 +707,7 @@ class TestExternal(unittest.TestCase):
         pass
 
     def testTrecentoMadrigal(self):
-        from music21 import corpus
+        # from music21 import corpus
 
         score = corpus.parse('PMFC_06_Giovanni-05_Donna').measures(1, 10)
         #score = corpus.parse('bach/bwv846').measures(1, 19)
