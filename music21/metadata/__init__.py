@@ -54,7 +54,7 @@ from music21 import exceptions21
 from music21.ext import six
 
 from music21.metadata import bundles
-from music21.metadata import caching
+# from music21.metadata import caching
 from music21.metadata import primitives
 from music21.metadata.primitives import (Date, DateSingle, DateRelative, DateBetween,
                                          DateSelection, Text, Contributor, Creator,

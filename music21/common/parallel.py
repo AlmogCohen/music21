@@ -13,7 +13,7 @@ __all__ = ['runParallel',
            'cpus',
            ]
 
-import multiprocessing
+# import multiprocessing
 
 from music21.ext.joblib import Parallel, delayed  # @UnresolvedImport
 
