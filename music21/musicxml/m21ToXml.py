@@ -3684,8 +3684,10 @@ class MeasureExporter(XMLExporterBase):
         >>> MEX.dump(mxDuration)
         <duration>15</duration>
         '''
+        # CORYVO: Support manual midi durations for swing scores
+        durationQuarterLength = getattr(dur, '_playback_duration', None) or dur.quarterLength
         mxDuration = Element('duration')
-        mxDuration.text = str(int(round(self.currentDivisions * dur.quarterLength)))
+        mxDuration.text = str(int(round(self.currentDivisions * durationQuarterLength)))
         return mxDuration
 
     def pitchToXml(self, p):

@@ -93,7 +93,9 @@ def durationToMidiTicks(d):
     >>> midi.translate.durationToMidiTicks(d)
     256
     '''
-    return int(round(d.quarterLength * defaults.ticksPerQuarter))
+    # CORYVO: Support manual midi durations for swing scores
+    duration = getattr(d, '_playback_duration', None) or d.quarterLength
+    return int(round(duration * defaults.ticksPerQuarter))
 
 
 def ticksToDuration(ticks, ticksPerQuarter=None, inputM21DurationObject=None):

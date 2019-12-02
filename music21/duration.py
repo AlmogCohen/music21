@@ -1464,7 +1464,10 @@ class Duration(prebase.ProtoM21Object, SlottedObjectMixin):
         '_unlinkedType',
         '_dotGroups',
 
-        '_client'
+        '_client',
+
+        # CORYVO: Support manual musicxml duration for swing scores
+        '_playback_duration',
     )
 
     # INITIALIZER #
